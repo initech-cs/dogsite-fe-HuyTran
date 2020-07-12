@@ -1,0 +1,20 @@
+.navbar-a{
+    font-weight: 600;
+    letter-spacing: 1px;;
+    font-size: 21px;
+    display: flex;
+    justify-content: space-evenly;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.navbar-light .navbar-nav .nav-link{
+    color: #FFC800;
+    margin: 0 25px 0 0
+}
+.navbar-light .navbar-nav .nav-link:hover{
+    background-color: #FFC800;
+    color: white;
+}
+.bg-light{
+    background-color: #fcfcfc !important;
+}
