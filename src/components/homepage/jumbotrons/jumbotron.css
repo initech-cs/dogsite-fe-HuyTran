@@ -109,7 +109,7 @@ h2.sub-title span {
 }
 
 .product-image{
-    background: url(/public/images/circle_bg.png) no-repeat scroll bottom center;
+    background: url(/images/circle_bg.png) no-repeat scroll bottom center;
 	min-height: 360px;
 	padding-bottom: 20px;
 	position: relative;

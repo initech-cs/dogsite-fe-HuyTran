@@ -77,7 +77,7 @@ export default function jumbotron() {
               <div className="product">
                 <div className="product-image">
                   <a href="#">
-                  <img src="./images/3.png" alt="dog" />                  </a>
+                  <img src="./images/3.png" alt="dog" /></a>
                 </div>
                 <div className="product-info">
                   <h2>Large</h2>
@@ -89,7 +89,7 @@ export default function jumbotron() {
               <div className="product">
                 <div className="product-image">
                   <a href="#">
-                  <img src="./images/4.png" alt="dog" />                  </a>
+                  <img src="./images/4.png" alt="dog" /></a>
                 </div>
                 <div className="product-info">
                   <h2>Unique</h2>

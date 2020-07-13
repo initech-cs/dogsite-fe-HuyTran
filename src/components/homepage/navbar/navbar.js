@@ -4,12 +4,13 @@ import {
   Nav,
   Navbar,
   Container,
+  Row
 } from "react-bootstrap";
 
 export default function navbar() {
   return (
-    <div>
-      <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+    <Row>
+      <Navbar className="col-sm-12" collapseOnSelect expand="lg" bg="light" variant="light">
         <Container>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav" className="navbar-a">
@@ -24,6 +25,6 @@ export default function navbar() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </div>
+    </Row>
   );
 }
