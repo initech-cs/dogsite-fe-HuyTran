@@ -10,7 +10,7 @@ import {
 export default function navbar() {
   return (
     <Row>
-      <Navbar className="col-sm-12" collapseOnSelect expand="lg" bg="light" variant="light">
+      <Navbar className="col-sm-12 navbar" collapseOnSelect expand="lg" bg="light" variant="light">
         <Container>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav" className="navbar-a">
