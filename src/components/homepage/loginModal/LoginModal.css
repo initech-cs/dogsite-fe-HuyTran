@@ -1,0 +1,47 @@
+.btn-warning{
+    width: 100%;
+    border-radius: 40px;
+    font-weight: bold;
+    font-size: initial;
+}
+
+.inside-modal{
+    padding: 10px 50px 10px 50px
+}
+
+.forgot-password{
+    margin: 15px 0 15px 0;
+}
+
+.forgot-password a{
+    color: brown;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.or-login{
+    padding: 0px;
+    /* text-align: center; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.fb-gg-btn{
+    margin: 15px 0 15px 0;
+}
+
+.fb-gg-btn .btn-indigo{
+    width: 90%;
+    border-radius: 50px;
+    font-weight: bold;
+}
+
+.fb-gg-btn .btn-primary{
+    width: 90%;
+    border-radius: 50px;
+    font-weight: bold;
+    background-color: white !important;
+    color: rgb(126, 126, 126) !important
+}

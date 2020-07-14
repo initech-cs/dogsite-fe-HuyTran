@@ -1,30 +1,45 @@
 import React from "react";
-import './navbar.css'
+import './Navbar.css'
 import {
   Nav,
   Navbar,
   Container,
-  Row
+  Row, NavDropdown
 } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 
-export default function navbar() {
+export default function CustomNavbar() {
+
+  const dispatch = useDispatch()
+
+  const handleLogin = () => {
+    dispatch({type: "LOGIN", payload: {showLogin: true}})
+  }
+
   return (
-    <Row>
-      <Navbar className="col-sm-12 navbar" collapseOnSelect expand="lg" bg="light" variant="light">
-        <Container>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav" className="navbar-a">
-              <Nav>
-                <Nav.Link href="#home">HOME</Nav.Link>
-                <Nav.Link href="#breeders">BREEDERS</Nav.Link>
-                <Nav.Link href="#health">HEALTH & CARE</Nav.Link>
-                <Nav.Link href="#pups">PUPPIES</Nav.Link>
-                <Nav.Link href="#services">SERVICES</Nav.Link>
-                <Nav.Link href="#contact">CONTACT</Nav.Link>
-              </Nav>
-          </Navbar.Collapse>
-        </Container>
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
+        <Navbar.Brand href="#home">LOGO</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto">
+          <NavDropdown title="BREEDS" id="collasible-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Toy</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">Small</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Large</NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title="RESOURCES" id="collasible-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+          <Nav>
+            <Nav.Link href="#deets" onClick={handleLogin}>LOGIN</Nav.Link>
+            <Nav.Link> | </Nav.Link>
+            <Nav.Link>SIGN UP</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
       </Navbar>
-    </Row>
+
   );
 }

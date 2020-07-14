@@ -9,7 +9,7 @@ import {
   FormGroup,
 } from "react-bootstrap";
 
-import "./jumbotron.css";
+import "./Jumbotron.css";
 
 export default function jumbotron() {
   return (
