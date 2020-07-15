@@ -7,14 +7,16 @@ import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 
 const initialState = {
-  showLogin: false
+  showLogin: false,
+  // showUser: ""
 }
 
 function reducer(state = initialState, action){
   if(action.type === "LOGIN"){
     state.showLogin = action.payload.showLogin
+    // state.showUser = action.payload.showUser
   }
-  console.log(state.showLogin)
+
   state = {...state} 
   return state
 }

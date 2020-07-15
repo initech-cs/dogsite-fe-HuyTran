@@ -9,6 +9,7 @@ import LoginModal from './components/homepage/loginModal/LoginModal';
 // import Search from './components/homepage/search/search'
 
 function App() {
+  
   return (
     <div>
       <Navbar/>

@@ -30,7 +30,7 @@ export default function jumbotron() {
               Big <span style={{ color: "#FFC800" }}>or</span> Small
             </p>
             <p className="jumboh1">We have them all</p>
-            <a href="#our-breeds" class="btn">
+            <a href="#our-breeds" className="btn">
               view all breeds
             </a>
           </div>
@@ -142,16 +142,16 @@ export default function jumbotron() {
             </h2>
           </Col>
           <Col sm={12} className="filter-button">
-            <a href="#our-breeds" class="btn">
+            <a href="#our-breeds" className="btn">
               All
             </a>
-            <a href="#our-breeds" class="btn">
+            <a href="#our-breeds" className="btn">
               Small
             </a>
-            <a href="#our-breeds" class="btn">
+            <a href="#our-breeds" className="btn">
               Medium
             </a>
-            <a href="#our-breeds" class="btn">
+            <a href="#our-breeds" className="btn">
               Large
             </a>
           </Col>
@@ -335,7 +335,7 @@ export default function jumbotron() {
 
       <Row id="get-in-touch">
         <Container>
-          <div class="section-title">
+          <div className="section-title">
             <h1>Get in Touch</h1>
             <h2 className="sub-title">
               let’s get to know <span>each other</span>
@@ -346,7 +346,7 @@ export default function jumbotron() {
             <Col xs={12}>
               <Form
                 id="contact-form"
-                class="contact-form"
+                className="contact-form"
                 name="contact-form"
                 method="post"
                 action="#"

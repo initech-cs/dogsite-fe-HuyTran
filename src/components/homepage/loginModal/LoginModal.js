@@ -3,14 +3,32 @@ import "./LoginModal.css";
 import { useSelector, useDispatch } from "react-redux";
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 import { Button, Modal, Col, Row } from "react-bootstrap";
+import FacebookLogin from 'react-facebook-login'
+import {responseFacebook} from "./LoginAPI"
+import axios from 'axios'
+
+
 export default function LoginModal() {
+
   const dispatch = useDispatch();
-
   const show = useSelector((state) => state.showLogin);
-
   const handleClose = () => {
-    dispatch({ type: "LOGIN", payload: { showLogin: false } });
+    dispatch({ type: "LOGIN", payload: { showLogin: false} });
   };
+
+  const handleFacebook = async (resp) => {
+    if (resp && resp.accessToken) {
+        console.log(resp.accessToken)
+      const user = await responseFacebook(resp);
+      console.log(user)
+      if (user instanceof Error) {
+        console.log("Oops! Something happened")
+        return
+      }
+    //   dispatch({ type: "USERLOADED", payload: { isUserLoaded: true } });
+    //   dispatch({ type: "LOGINMODAL", payload: { showLogin: false } });
+    }
+  }
 
   useEffect(() => {}, [show]);
 
@@ -38,7 +56,18 @@ export default function LoginModal() {
                         <Col sm={4} style={{padding: 0}}><hr></hr></Col>
                     </Row>
                     <Row className="fb-gg-btn">
-                        <Col style={{padding: 0, textAlign:"center"}}><MDBBtn color="indigo">Facebook</MDBBtn></Col>
+                        <Col style={{padding: 0, textAlign:"center"}}>
+                        <FacebookLogin
+                            // cssClass="fb-gg-btn"
+                            
+                            autoLoad={false}
+                            appId="4112733392131524"
+                            fields="name,email,picture"
+                            callback={(resp) => handleFacebook(resp)}
+                            // icon={<i className="fab fa-facebook-f"></i>}
+                            textButton="&nbsp;&nbsp;Facebook"
+                        />
+                        </Col>
                         <Col style={{padding: 0}}><MDBBtn color="primary">Google</MDBBtn></Col>
                     </Row>
                     <div className="text-center grey-text forgot-password">Need an account?  <a href="#">Sign up</a></div>
