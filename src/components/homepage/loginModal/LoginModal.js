@@ -7,26 +7,26 @@ import FacebookLogin from 'react-facebook-login'
 import {responseFacebook} from "./LoginAPI"
 import axios from 'axios'
 
-
 export default function LoginModal() {
 
   const dispatch = useDispatch();
   const show = useSelector((state) => state.showLogin);
   const handleClose = () => {
     dispatch({ type: "LOGIN", payload: { showLogin: false} });
-  };
+  }
 
   const handleFacebook = async (resp) => {
     if (resp && resp.accessToken) {
         console.log(resp.accessToken)
       const user = await responseFacebook(resp);
-      console.log(user)
+    //    localStorage.setItem('token', user.token)
+
       if (user instanceof Error) {
         console.log("Oops! Something happened")
         return
       }
     //   dispatch({ type: "USERLOADED", payload: { isUserLoaded: true } });
-    //   dispatch({ type: "LOGINMODAL", payload: { showLogin: false } });
+      dispatch({ type: "LOGIN", payload: { showLogin: false } });
     }
   }
 

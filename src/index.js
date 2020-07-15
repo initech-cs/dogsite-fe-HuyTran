@@ -16,6 +16,9 @@ function reducer(state = initialState, action){
     state.showLogin = action.payload.showLogin
     // state.showUser = action.payload.showUser
   }
+  if(action.type === "LOGOUT"){
+    
+  }
 
   state = {...state} 
   return state
