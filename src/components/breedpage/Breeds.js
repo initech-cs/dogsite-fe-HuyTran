@@ -73,7 +73,6 @@ export default function Breeds() {
                                 <button type="button" class="btn btn-amber">Small</button>
                                 <button type="button" class="btn btn-amber">Medium</button>
                                 <button type="button" class="btn btn-amber">Large</button>
-                                <button type="button" class="btn btn-amber">Unique</button>
                             </div>
                         </Col>
                         <Col sm={5} className="filter">

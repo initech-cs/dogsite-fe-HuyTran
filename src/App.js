@@ -8,6 +8,8 @@ import Jumbotron from "./components/homepage/jumbotrons/Jumbotron";
 import LoginModal from "./components/homepage/loginModal/LoginModal";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Breeds from "./components/breedpage/Breeds";
+import BreedDetail from "./components/breeddetailpage/BreedDetail";
+import Breeders from "./components/breeders/Breeders"
 
 function App() {
   return (
@@ -16,24 +18,14 @@ function App() {
       <LoginModal />
       {/* <Search/> */}
       <Switch>
-        <Route exact={true} path="/">
-          <Jumbotron />
-        </Route>
-        <Route path="/breeds">
-          <Breeds />
-        </Route>
-        <Route path="/resources/breeders/">
-          <Breeds />
-        </Route>
-        <Route path="/resources/dog-care">
-          <Breeds />
-        </Route>
-        <Route path="/resources/services">
-          <Breeds />
-        </Route>
-        <Route path="/resources/about-us">
-          <Breeds />
-        </Route>
+        <Route exact={true} path="/"><Jumbotron /></Route>
+        <Route path="/breeds/bull-terrier"><BreedDetail /></Route>
+        <Route path="/breeds"><Breeds /></Route>
+        
+        <Route path="/resources/breeders/"><Breeders/></Route>
+        <Route path="/resources/dog-care"><Breeds /></Route>
+        <Route path="/resources/services"><Breeds /></Route>
+        <Route path="/resources/about-us"><Breeds /></Route>
         <Route path="/me"></Route>
       </Switch>
     </Router>
