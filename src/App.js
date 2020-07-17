@@ -26,7 +26,7 @@ function App() {
         <Route path="/resources/dog-care"><Breeds /></Route>
         <Route path="/resources/services"><Breeds /></Route>
         <Route path="/resources/about-us"><Breeds /></Route>
-        <Route path="/me"></Route>
+        {/* <ProtectedRoute path="/profile"></ProtectedRoute> */}
       </Switch>
     </Router>
   );
