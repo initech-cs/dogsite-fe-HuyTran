@@ -64,10 +64,9 @@ export default function CustomNavbar() {
             <Nav.Link href="/breeds">BREEDS</Nav.Link>
             <NavDropdown title="RESOURCES" id="collasible-nav-dropdown">
               <NavDropdown.Item>
-                <Link to="/resources/breeders">Breeders</Link>
                 <Link to="/resources/dog-care">Health & General Dog Care</Link>
                 <Link to="/resources/services">Services</Link>
-                <Link to="/resources/about-us">About us</Link>
+                <Link to="/resources/kennels">Kennels</Link>
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>

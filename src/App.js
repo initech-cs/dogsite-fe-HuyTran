@@ -9,7 +9,8 @@ import LoginModal from "./components/homepage/loginModal/LoginModal";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Breeds from "./components/breedpage/Breeds";
 import BreedDetail from "./components/breeddetailpage/BreedDetail";
-import Breeders from "./components/breeders/Breeders"
+import Kennels from "./components/kennelspage/Kennels"
+import KennelDetail from "./components/kennelDetail/KennelDetail";
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
         <Route path="/breeds/bull-terrier"><BreedDetail /></Route>
         <Route path="/breeds"><Breeds /></Route>
         
-        <Route path="/resources/breeders/"><Breeders/></Route>
+        <Route path="/resources/kennels/details"><KennelDetail/></Route>
+        <Route path="/resources/kennels/"><Kennels/></Route>
         <Route path="/resources/dog-care"><Breeds /></Route>
         <Route path="/resources/services"><Breeds /></Route>
         <Route path="/resources/about-us"><Breeds /></Route>
