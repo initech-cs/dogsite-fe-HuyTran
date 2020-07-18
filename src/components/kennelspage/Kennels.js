@@ -81,7 +81,7 @@ export default function Kennels() {
                         <Col sm={3}>CONTACT</Col>
                     </Row>
                     <Row className="content">
-                        <Col sm={4} className="kennel-name" style={{paddingLeft:"0"}}><a href="">American Pitbull Kennel</a></Col>
+                        <Col sm={4} className="kennel-name" style={{paddingLeft:"0"}}><a href="/kennels/teepit">Teepit Kennel</a></Col>
                         <Col sm={2}><i class="fas fa-search" aria-hidden="true"></i></Col>
                         <Col sm={3} className="kennel-city"><a href="">HCM city</a></Col>
                         <Col sm={3} className="kennel-contact"><a href="">0963791845</a></Col>

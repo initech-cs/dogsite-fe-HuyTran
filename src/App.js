@@ -19,15 +19,9 @@ function App() {
       <LoginModal />
       {/* <Search/> */}
       <Switch>
-        <Route exact={true} path="/"><Jumbotron /></Route>
-        <Route path="/breeds/bull-terrier"><BreedDetail /></Route>
-        <Route path="/breeds"><Breeds /></Route>
-        
-        <Route path="/resources/kennels/details"><KennelDetail/></Route>
-        <Route path="/resources/kennels/"><Kennels/></Route>
-        <Route path="/resources/dog-care"><Breeds /></Route>
-        <Route path="/resources/services"><Breeds /></Route>
-        <Route path="/resources/about-us"><Breeds /></Route>
+        <Route path="/kennels/teepit"><Jumbotron/></Route>
+        <Route path="/kennels"><Kennels/></Route>
+        <Route path="/"><Breeds/></Route>
         {/* <ProtectedRoute path="/profile"></ProtectedRoute> */}
       </Switch>
     </Router>

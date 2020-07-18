@@ -61,14 +61,9 @@ export default function CustomNavbar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/breeds">BREEDS</Nav.Link>
-            <NavDropdown title="RESOURCES" id="collasible-nav-dropdown">
-              <NavDropdown.Item>
-                <Link to="/resources/dog-care">Health & General Dog Care</Link>
-                <Link to="/resources/services">Services</Link>
-                <Link to="/resources/kennels">Kennels</Link>
-              </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link href="/kennels">Kennels</Nav.Link>
+            <Nav.Link href="/services">Services</Nav.Link>
+            <Nav.Link href="/dogcare">Health & Dog care</Nav.Link>
           </Nav>
           {token ? (
             <Nav>

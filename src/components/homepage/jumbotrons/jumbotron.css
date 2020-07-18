@@ -271,9 +271,10 @@ ul.breed-desc li span strong {
     font-weight: bold;
     font-size: 17pt;
     letter-spacing: 1px;
-    width: 300px;
+    width: 300px !important;
     height: 70px;
-    background-color: none;
+    border-radius: 10px !important;
+    background-color: transparent;
 }
 
 #breeders{
@@ -318,4 +319,8 @@ ul.breed-desc li span strong {
 
 ::placeholder {
     font-weight: bold;
+}
+
+.carousel{
+    height: 600px;
 }

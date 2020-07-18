@@ -7,6 +7,7 @@ import {
   FormControl,
   Button,
   FormGroup,
+  Carousel
 } from "react-bootstrap";
 
 import "./Jumbotron.css";
@@ -16,14 +17,39 @@ export default function jumbotron() {
     <div>
       {/* -------------------------------JUMBOTRON 1------------------------------- */}
       <Row id="hello">
-        <Col sm={7} xs={12} className="img">
-          <img
-            src="https://images8.alphacoders.com/375/thumb-1920-375995.jpg"
-            alt="First"
-            width="100%"
-          />
+        <Col sm={12} xs={12} className="img">
+
+        <Carousel>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="https://media.gettyimages.com/photos/three-pit-bull-dogs-picture-id698650598?s=2048x2048"
+      alt="First slide"
+    />
+    
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="https://media.gettyimages.com/photos/no-holding-back-picture-id171318092?s=2048x2048"
+      alt="Second slide"
+    />
+
+  
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="https://media.gettyimages.com/photos/playtime-picture-id175590776?s=2048x2048"
+      alt="Third slide"
+    />
+
+    
+  </Carousel.Item>
+</Carousel>
+          
         </Col>
-        <Col sm={5} xs={12} className="column">
+        {/* <Col sm={5} xs={12} className="column">
           <div className="right-column">
             <p className="jumboh1">Whether</p>
             <p className="jumboh2">
@@ -34,14 +60,14 @@ export default function jumbotron() {
               view all breeds
             </a>
           </div>
-        </Col>
+        </Col> */}
       </Row>
       {/* -------------------------------JUMBOTRON 2------------------------------- */}
       <Row id="welcome">
         <Container>
           <div className="section-title">
             <h1 className="title">
-              Welcome to <span>Tindog</span>
+              Welcome to <span>Teepit Kennel</span>
             </h1>
             <h2 className="sub-title">
               WE RAISE & BREEDING OVER <span>80 DOG BREEDS</span>
@@ -52,7 +78,7 @@ export default function jumbotron() {
               <div className="product">
                 <div className="product-image">
                   <a href="#">
-                    <img src="./images/1.png" alt="dog" />
+                    <img src="http://demo.lemonthemes.com/joffrey/supernova/images/product/1.png" alt="dog" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -65,7 +91,7 @@ export default function jumbotron() {
               <div className="product">
                 <div className="product-image">
                   <a href="#">
-                    <img src="./images/2.png" alt="dog" />
+                    <img src="http://demo.lemonthemes.com/joffrey/supernova/images/product/2.png" alt="dog" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -78,7 +104,7 @@ export default function jumbotron() {
               <div className="product">
                 <div className="product-image">
                   <a href="#">
-                    <img src="./images/3.png" alt="dog" />
+                    <img src="http://demo.lemonthemes.com/joffrey/supernova/images/product/3.png" alt="dog" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -91,7 +117,7 @@ export default function jumbotron() {
               <div className="product">
                 <div className="product-image">
                   <a href="#">
-                    <img src="./images/4.png" alt="dog" />
+                    <img src="http://demo.lemonthemes.com/joffrey/supernova/images/product/4.png" alt="dog" />
                   </a>
                 </div>
                 <div className="product-info">
@@ -125,6 +151,7 @@ export default function jumbotron() {
                 height: "70px",
                 fontSize: "25px",
                 fontWeight: "600",
+                borderRadius:"5px"
               }}
             >
               GO
@@ -159,7 +186,7 @@ export default function jumbotron() {
             <Col xs={6} className="breed-item">
               <div className="breed">
                 <Col sm={6} className="breed-photo">
-                  <img src="./images/1.jpg" alt="breed" />
+                  <img src="https://media.gettyimages.com/photos/pitbull-dog-portrait-with-human-expression-picture-id697946430?s=2048x2048" alt="breed" />
                 </Col>
                 <Col sm={6} className="breed-info">
                   <h3 className="breed-name">German Shepherd</h3>
@@ -201,7 +228,7 @@ export default function jumbotron() {
             <Col xs={6} className="breed-item">
               <div className="breed">
                 <Col sm={6} className="breed-photo">
-                  <img src="images/1.jpg" alt="breed" />
+                  <img src="https://media.gettyimages.com/photos/german-shepherd-picture-id127765062?s=2048x2048" alt="breed" />
                 </Col>
                 <Col sm={6} className="breed-info">
                   <h3 className="breed-name">German Shepherd</h3>
@@ -261,7 +288,7 @@ export default function jumbotron() {
                 <div className="breeder-image">
                   <a href="#">
                     <img
-                      src="./images/1_2.jpg"
+                      src="http://demo.lemonthemes.com/joffrey/supernova/images/staff/1.jpg"
                       alt="breeder"
                       style={{ width: "100%" }}
                     />
@@ -278,7 +305,7 @@ export default function jumbotron() {
                 <div className="breeder-image">
                   <a href="#">
                     <img
-                      src="./images/2_2.jpg"
+                      src="http://demo.lemonthemes.com/joffrey/supernova/images/staff/2.jpg"
                       alt="breeder"
                       style={{ width: "100%" }}
                     />
@@ -295,7 +322,7 @@ export default function jumbotron() {
                 <div className="breeder-image">
                   <a href="#">
                     <img
-                      src="./images/3_2.jpg"
+                      src="http://demo.lemonthemes.com/joffrey/supernova/images/staff/3.jpg"
                       alt="breeder"
                       style={{ width: "100%" }}
                     />
@@ -312,7 +339,7 @@ export default function jumbotron() {
                 <div className="breeder-image">
                   <a href="#">
                     <img
-                      src="./images/4_2.jpg"
+                      src="http://demo.lemonthemes.com/joffrey/supernova/images/staff/4.jpg"
                       alt="breeder"
                       style={{ width: "100%" }}
                     />
