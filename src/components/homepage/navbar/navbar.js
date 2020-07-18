@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
 import { Nav, Navbar, Container, Row, NavDropdown } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import LoginModal from "../loginModal/LoginModal";
+import Signup from "../SignUpModal/SignUp"
 
 export default function CustomNavbar() {
 
@@ -33,6 +33,10 @@ export default function CustomNavbar() {
       console.log("dont mess with my app");
     }
   };
+
+  const handleSignup = () => {
+    dispatch({ type: "SIGNUP", payload: {showSignup: true}})
+  }
 
   // const fetchUser = async () => {
   //   const token = localStorage.getItem("token");
@@ -71,16 +75,17 @@ export default function CustomNavbar() {
             </Nav>
           ) : (
             <Nav>
-              <Nav.Link href="#" onClick={handleLogin}>
+              <Nav.Link onClick={handleLogin}>
                 LOGIN
               </Nav.Link>
               <Nav.Link> | </Nav.Link>
-              <Nav.Link>SIGN UP</Nav.Link>
+              <Nav.Link onClick={handleSignup}>SIGN UP</Nav.Link>
             </Nav>
           )}
         </Navbar.Collapse>
       </Navbar>
       <LoginModal />
+      <Signup/>
     </div>
   );
 }
