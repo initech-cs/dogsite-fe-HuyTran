@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {
   Row,
   Col,
@@ -7,47 +7,56 @@ import {
   FormControl,
   Button,
   FormGroup,
-  Carousel
+  Carousel,
 } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 
 import "./Jumbotron.css";
 
-export default function jumbotron() {
+export const Jumbotron = () => {
+  const { id } = useParams(); // id = :id (app.js)
+  const [kennel, setKennel] = useState({});
+
+  const getKennel = async (id) => {
+    const data = await fetch(`${process.env.REACT_APP_API_URL}/kennels/${id}`);
+    const result = await data.json();
+    console.log(result)
+    setKennel(result.data)
+  } 
+
+  useEffect(() => {
+    getKennel(id)
+  }, [])
+
+  console.log(kennel.purebreds);
   return (
     <div>
       {/* -------------------------------JUMBOTRON 1------------------------------- */}
       <Row id="hello">
         <Col sm={12} xs={12} className="img">
-
-        <Carousel>
-  <Carousel.Item>
-    <img
-      className="d-block w-100"
-      src="https://media.gettyimages.com/photos/three-pit-bull-dogs-picture-id698650598?s=2048x2048"
-      alt="First slide"
-    />
-    
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className="d-block w-100"
-      src="https://media.gettyimages.com/photos/no-holding-back-picture-id171318092?s=2048x2048"
-      alt="Second slide"
-    />
-
-  
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className="d-block w-100"
-      src="https://media.gettyimages.com/photos/playtime-picture-id175590776?s=2048x2048"
-      alt="Third slide"
-    />
-
-    
-  </Carousel.Item>
-</Carousel>
-          
+          <Carousel>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src="https://media.gettyimages.com/photos/three-pit-bull-dogs-picture-id698650598?s=2048x2048"
+                alt="First slide"
+              />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src="https://media.gettyimages.com/photos/no-holding-back-picture-id171318092?s=2048x2048"
+                alt="Second slide"
+              />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src="https://media.gettyimages.com/photos/playtime-picture-id175590776?s=2048x2048"
+                alt="Third slide"
+              />
+            </Carousel.Item>
+          </Carousel>
         </Col>
         {/* <Col sm={5} xs={12} className="column">
           <div className="right-column">
@@ -78,7 +87,10 @@ export default function jumbotron() {
               <div className="product">
                 <div className="product-image">
                   <a href="#">
-                    <img src="http://demo.lemonthemes.com/joffrey/supernova/images/product/1.png" alt="dog" />
+                    <img
+                      src="http://demo.lemonthemes.com/joffrey/supernova/images/product/1.png"
+                      alt="dog"
+                    />
                   </a>
                 </div>
                 <div className="product-info">
@@ -91,7 +103,10 @@ export default function jumbotron() {
               <div className="product">
                 <div className="product-image">
                   <a href="#">
-                    <img src="http://demo.lemonthemes.com/joffrey/supernova/images/product/2.png" alt="dog" />
+                    <img
+                      src="http://demo.lemonthemes.com/joffrey/supernova/images/product/2.png"
+                      alt="dog"
+                    />
                   </a>
                 </div>
                 <div className="product-info">
@@ -104,7 +119,10 @@ export default function jumbotron() {
               <div className="product">
                 <div className="product-image">
                   <a href="#">
-                    <img src="http://demo.lemonthemes.com/joffrey/supernova/images/product/3.png" alt="dog" />
+                    <img
+                      src="http://demo.lemonthemes.com/joffrey/supernova/images/product/3.png"
+                      alt="dog"
+                    />
                   </a>
                 </div>
                 <div className="product-info">
@@ -117,7 +135,10 @@ export default function jumbotron() {
               <div className="product">
                 <div className="product-image">
                   <a href="#">
-                    <img src="http://demo.lemonthemes.com/joffrey/supernova/images/product/4.png" alt="dog" />
+                    <img
+                      src="http://demo.lemonthemes.com/joffrey/supernova/images/product/4.png"
+                      alt="dog"
+                    />
                   </a>
                 </div>
                 <div className="product-info">
@@ -151,7 +172,7 @@ export default function jumbotron() {
                 height: "70px",
                 fontSize: "25px",
                 fontWeight: "600",
-                borderRadius:"5px"
+                borderRadius: "5px",
               }}
             >
               GO
@@ -163,7 +184,7 @@ export default function jumbotron() {
       <Row id="our-breeds">
         <Container>
           <Col sm={12} className="section-title">
-            <h1 className="title">Our Breeds</h1>
+            <h1 className="title">Our Purebreds</h1>
             <h2 className="sub-title">
               ALL OUR DOGS ARE <span>WELL FED & CARED FOR</span>
             </h2>
@@ -186,7 +207,10 @@ export default function jumbotron() {
             <Col xs={6} className="breed-item">
               <div className="breed">
                 <Col sm={6} className="breed-photo">
-                  <img src="https://media.gettyimages.com/photos/pitbull-dog-portrait-with-human-expression-picture-id697946430?s=2048x2048" alt="breed" />
+                  <img
+                    src="http://demo.lemonthemes.com/joffrey/supernova/images/breeds/1.jpg"
+                    alt="breed"
+                  />
                 </Col>
                 <Col sm={6} className="breed-info">
                   <h3 className="breed-name">German Shepherd</h3>
@@ -228,7 +252,190 @@ export default function jumbotron() {
             <Col xs={6} className="breed-item">
               <div className="breed">
                 <Col sm={6} className="breed-photo">
-                  <img src="https://media.gettyimages.com/photos/german-shepherd-picture-id127765062?s=2048x2048" alt="breed" />
+                  <img
+                    src="http://demo.lemonthemes.com/joffrey/supernova/images/breeds/2.jpg"
+                    alt="breed"
+                  />
+                </Col>
+                <Col sm={6} className="breed-info">
+                  <h3 className="breed-name">German Shepherd</h3>
+                  <ul className="breed-desc">
+                    <li>
+                      Ease of training
+                      <span>
+                        <strong>10</strong> / 10
+                      </span>
+                    </li>
+                    <li>
+                      Ease of training
+                      <span>
+                        <strong>10</strong> / 10
+                      </span>
+                    </li>
+                    <li>
+                      Ease of training
+                      <span>
+                        <strong>10</strong> / 10
+                      </span>
+                    </li>
+                    <li>
+                      Ease of training
+                      <span>
+                        <strong>10</strong> / 10
+                      </span>
+                    </li>
+                    <li>
+                      Ease of training
+                      <span>
+                        <strong>10</strong> / 10
+                      </span>
+                    </li>
+                  </ul>
+                </Col>
+              </div>
+            </Col>
+            <Col xs={6} className="breed-item">
+              <div className="breed">
+                <Col sm={6} className="breed-photo">
+                  <img
+                    src="http://demo.lemonthemes.com/joffrey/supernova/images/breeds/3.jpg"
+                    alt="breed"
+                  />
+                </Col>
+                <Col sm={6} className="breed-info">
+                  <h3 className="breed-name">German Shepherd</h3>
+                  <ul className="breed-desc">
+                    <li>
+                      Ease of training
+                      <span>
+                        <strong>10</strong> / 10
+                      </span>
+                    </li>
+                    <li>
+                      Ease of training
+                      <span>
+                        <strong>10</strong> / 10
+                      </span>
+                    </li>
+                    <li>
+                      Ease of training
+                      <span>
+                        <strong>10</strong> / 10
+                      </span>
+                    </li>
+                    <li>
+                      Ease of training
+                      <span>
+                        <strong>10</strong> / 10
+                      </span>
+                    </li>
+                    <li>
+                      Ease of training
+                      <span>
+                        <strong>10</strong> / 10
+                      </span>
+                    </li>
+                  </ul>
+                </Col>
+              </div>
+            </Col>
+            <Col xs={6} className="breed-item">
+              <div className="breed">
+                <Col sm={6} className="breed-photo">
+                  <img
+                    src="http://demo.lemonthemes.com/joffrey/supernova/images/breeds/4.jpg"
+                    alt="breed"
+                  />
+                </Col>
+                <Col sm={6} className="breed-info">
+                  <h3 className="breed-name">German Shepherd</h3>
+                  <ul className="breed-desc">
+                    <li>
+                      Ease of training
+                      <span>
+                        <strong>10</strong> / 10
+                      </span>
+                    </li>
+                    <li>
+                      Ease of training
+                      <span>
+                        <strong>10</strong> / 10
+                      </span>
+                    </li>
+                    <li>
+                      Ease of training
+                      <span>
+                        <strong>10</strong> / 10
+                      </span>
+                    </li>
+                    <li>
+                      Ease of training
+                      <span>
+                        <strong>10</strong> / 10
+                      </span>
+                    </li>
+                    <li>
+                      Ease of training
+                      <span>
+                        <strong>10</strong> / 10
+                      </span>
+                    </li>
+                  </ul>
+                </Col>
+              </div>
+            </Col>
+            <Col xs={6} className="breed-item">
+              <div className="breed">
+                <Col sm={6} className="breed-photo">
+                  <img
+                    src="http://demo.lemonthemes.com/joffrey/supernova/images/breeds/5.jpg"
+                    alt="breed"
+                  />
+                </Col>
+                <Col sm={6} className="breed-info">
+                  <h3 className="breed-name">German Shepherd</h3>
+                  <ul className="breed-desc">
+                    <li>
+                      Ease of training
+                      <span>
+                        <strong>10</strong> / 10
+                      </span>
+                    </li>
+                    <li>
+                      Ease of training
+                      <span>
+                        <strong>10</strong> / 10
+                      </span>
+                    </li>
+                    <li>
+                      Ease of training
+                      <span>
+                        <strong>10</strong> / 10
+                      </span>
+                    </li>
+                    <li>
+                      Ease of training
+                      <span>
+                        <strong>10</strong> / 10
+                      </span>
+                    </li>
+                    <li>
+                      Ease of training
+                      <span>
+                        <strong>10</strong> / 10
+                      </span>
+                    </li>
+                  </ul>
+                </Col>
+              </div>
+            </Col>
+            <Col xs={6} className="breed-item">
+              <div className="breed">
+                <Col sm={6} className="breed-photo">
+                  <img
+                    src="http://demo.lemonthemes.com/joffrey/supernova/images/breeds/6.jpg"
+                    alt="breed"
+                  />
                 </Col>
                 <Col sm={6} className="breed-info">
                   <h3 className="breed-name">German Shepherd</h3>
@@ -358,8 +565,6 @@ export default function jumbotron() {
         </Container>
       </Row>
       {/* -------------------------------JUMBOTRON 4------------------------------- */}
-      <Row id="puppies"></Row>
-
       <Row id="get-in-touch">
         <Container>
           <div className="section-title">
@@ -416,9 +621,16 @@ export default function jumbotron() {
                     />
                   </FormGroup>
 
-                  <FormGroup className="col-sm-12" style={{textAlign: "center"}}>
+                  <FormGroup
+                    className="col-sm-12"
+                    style={{ textAlign: "center" }}
+                  >
                     {/* <h1 class="thank-you"><span>Thank you! Your mail has been sent!</span></h1>*/}
-                    <Button className="view-more" type="submit" style={{ animationName: "none"}}>
+                    <Button
+                      className="view-more"
+                      type="submit"
+                      style={{ animationName: "none" }}
+                    >
                       Submit Message
                     </Button>
                   </FormGroup>
@@ -430,4 +642,6 @@ export default function jumbotron() {
       </Row>
     </div>
   );
-}
+};
+
+export default Jumbotron;

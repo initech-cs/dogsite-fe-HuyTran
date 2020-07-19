@@ -168,7 +168,9 @@ h2.sub-title span {
 
 #our-breeds{
     padding: 120px 0;
-    background: url(https://thewallpaper.co//wp-content/uploads/2016/01/dog-wallpapers-dog-desktop-images-animal-background-images-hd-dog-images-hairy-dogs-dog-photos-amazing-animal-wallpapers-hd-dogs-2048x1080.jpg) no-repeat;
+    background: url(http://demo.lemonthemes.com/joffrey/supernova/images/bg/breeds.jpg) no-repeat;
+    background-size: cover;
+    /* font-family: "Roboto Slab","Times New Roman",serif; */
 }
 
 .filter-button{

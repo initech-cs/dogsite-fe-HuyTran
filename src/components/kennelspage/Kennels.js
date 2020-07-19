@@ -1,16 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Kennels.css";
 import { Container, Carousel, Row, Col, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { MDBInput, MDBBtn } from "mdbreact";
 
 export default function Kennels() {
+  const [kennels, setKennels] = useState([])
+  const [purebredList, setPurebredList] = useState([]);
+
+  const getKennelList = async () => {
+    let data = await fetch(`${process.env.REACT_APP_API_URL}/kennels`);
+    let result = await data.json();
+    console.log(result)
+    setKennels(result.data);
+  };
+
+  const getPurebredList = async (kennelId) => {
+    let data = await fetch(
+      `${process.env.REACT_APP_API_URL}/kennels/${kennelId}/purebred`
+    );
+    let result = await data.json();
+    console.log(result)
+    setPurebredList(result.data);
+  };
+  
+  useEffect(() => {
+    getKennelList();
+    getPurebredList()
+  }, []);
+
   return (
     <div className="body-kennel">
       <Container>
         <div className="normal-kennel">
-            <h1>The most famous sire <a>&</a> lady</h1>
-            <Row>
-            <Col>
+          <h1>
+            The most famous sire <a>&</a> lady
+          </h1>
+          <Row>
+          <Col>
               <Card style={{ width: "16rem" }}>
                 <Card.Img
                   style={{ height: "12rem" }}
@@ -59,99 +86,85 @@ export default function Kennels() {
               </Card>
             </Col>
           </Row>
-            <h1>Top 5 rating</h1>
+          <h1>Top 5 rating</h1>
         </div>
         <Row className="search-kennel">
-            <Col sm={8} >
-                <div className="info-left">
-                <Row><Col sm={12}><h4>Search kennels by Distance:</h4></Col></Row>
-                <Row>
-                    <Col sm={6} style={{paddingRight:"5px"}}><MDBInput className="input" label="Location"/></Col>
-                    <Col sm={6} style={{paddingLeft:"5px"}}><MDBInput className="input" label="Kennel name" /></Col>
+          <Col sm={8}>
+            <div className="info-left">
+              <Row>
+                <Col sm={12}>
+                  <h4>Search kennels by Distance:</h4>
+                </Col>
+              </Row>
+              <Row>
+                <Col sm={6} style={{ paddingRight: "5px" }}>
+                  <MDBInput className="input" label="Location" />
+                </Col>
+                <Col sm={6} style={{ paddingLeft: "5px" }}>
+                  <MDBInput className="input" label="Kennel name" />
+                </Col>
+              </Row>
+              <div className="search-top">
+                <p>Search by state</p>
+                <MDBBtn color="warning">Search</MDBBtn>
+              </div>
+              <div className="table">
+                <Row className="title">
+                  <Col sm={4}>KENNELS</Col>
+                  <Col sm={2}>DOG LIST</Col>
+                  <Col sm={3}>CITY</Col>
+                  <Col sm={3}>CONTACT</Col>
                 </Row>
-                <div className="search-top">
-                    <p>Search by state</p>
-                    <MDBBtn color="warning" >Search</MDBBtn>
-                </div>
-                <div className="table">
-                    <Row className="title">
-                        <Col sm={4}>KENNELS</Col>
-                        <Col sm={2}>DOG LIST</Col>
-                        <Col sm={3}>CITY</Col>
-                        <Col sm={3}>CONTACT</Col>
-                    </Row>
+
+                {kennels.map((item) => {
+                  return (
                     <Row className="content">
-                        <Col sm={4} className="kennel-name" style={{paddingLeft:"0"}}><a href="/kennels/teepit">Teepit Kennel</a></Col>
-                        <Col sm={2}><i class="fas fa-search" aria-hidden="true"></i></Col>
-                        <Col sm={3} className="kennel-city"><a href="">HCM city</a></Col>
-                        <Col sm={3} className="kennel-contact"><a href="">0963791845</a></Col>
+                      <Col
+                        sm={4}
+                        className="kennel-name"
+                        style={{ paddingLeft: "0" }}
+                      >
+                        <a href="/kennels">{item.name}</a>
+                      </Col>
+                      <Col sm={2}>
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                      </Col>
+                      <Col sm={3} className="kennel-city">
+                        <a href="">HCM city</a>
+                      </Col>
+                      <Col sm={3} className="kennel-contact">
+                        <a href="">{item.phone}</a>
+                      </Col>
                     </Row>
-                    <Row className="content">
-                        <Col sm={4} className="kennel-name" style={{paddingLeft:"0"}}><a href="">American Bully Kennel</a></Col>
-                        <Col sm={2}><i class="fas fa-search" aria-hidden="true"></i></Col>
-                        <Col sm={3} className="kennel-city"><a href="">HCM city</a></Col>
-                        <Col sm={3} className="kennel-contact"><a href="">0963791845</a></Col>
-                    </Row>
-                    <Row className="content">
-                        <Col sm={4} className="kennel-name" style={{paddingLeft:"0"}}><a href="">Poodle Kennel</a></Col>
-                        <Col sm={2}><i class="fas fa-search" aria-hidden="true"></i></Col>
-                        <Col sm={3} className="kennel-city"><a href="">HCM city</a></Col>
-                        <Col sm={3} className="kennel-contact"><a href="">0963791845</a></Col>
-                    </Row>
-                    <Row className="content">
-                        <Col sm={4} className="kennel-name" style={{paddingLeft:"0"}}><a href="">Chow Chow Kennel</a></Col>
-                        <Col sm={2}><i class="fas fa-search" aria-hidden="true"></i></Col>
-                        <Col sm={3} className="kennel-city"><a href="">HCM city</a></Col>
-                        <Col sm={3} className="kennel-contact"><a href="">0963791845</a></Col>
-                    </Row>
-                    <Row className="content">
-                        <Col sm={4} className="kennel-name" style={{paddingLeft:"0"}}><a href="">Bull Terrier Kennel</a></Col>
-                        <Col sm={2}><i class="fas fa-search" aria-hidden="true"></i></Col>
-                        <Col sm={3} className="kennel-city"><a href="">HCM city</a></Col>
-                        <Col sm={3} className="kennel-contact"><a href="">0963791845</a></Col>
-                    </Row>
-                    <Row className="content">
-                        <Col sm={4} className="kennel-name" style={{paddingLeft:"0"}}><a href="">Working dogs Kennel</a></Col>
-                        <Col sm={2}><i class="fas fa-search" aria-hidden="true"></i></Col>
-                        <Col sm={3} className="kennel-city"><a href="">HCM city</a></Col>
-                        <Col sm={3} className="kennel-contact"><a href="">0963791845</a></Col>
-                    </Row>
-                    <Row className="content">
-                        <Col sm={4} className="kennel-name" style={{paddingLeft:"0"}}><a href="">Cane Corso Kennel</a></Col>
-                        <Col sm={2}><i class="fas fa-search" aria-hidden="true"></i></Col>
-                        <Col sm={3} className="kennel-city"><a href="">HCM city</a></Col>
-                        <Col sm={3} className="kennel-contact"><a href="">0963791845</a></Col>
-                    </Row>
-                    <Row className="content">
-                        <Col sm={4} className="kennel-name" style={{paddingLeft:"0"}}><a href="">Tibet Kennel</a></Col>
-                        <Col sm={2}><i class="fas fa-search" aria-hidden="true"></i></Col>
-                        <Col sm={3} className="kennel-city"><a href="">HCM city</a></Col>
-                        <Col sm={3} className="kennel-contact"><a href="">0963791845</a></Col>
-                    </Row>
-                    <Row className="content">
-                        <Col sm={4} className="kennel-name" style={{paddingLeft:"0"}}><a href="">Dogo Argentino Kennel</a></Col>
-                        <Col sm={2}><i class="fas fa-search" aria-hidden="true"></i></Col>
-                        <Col sm={3} className="kennel-city"><a href="">HCM city</a></Col>
-                        <Col sm={3} className="kennel-contact"><a href="">0963791845</a></Col>
-                    </Row>
-                </div>
-                </div>
-            </Col>
-            {/* <Col sm={1}></Col> */}
-            <Col sm={4} >
-                <div className="search-right">
-                <h4 style={{fontSize: "23px", color:"#4D4751"}}>Find Kennel name</h4>
-                <MDBInput className="input" label="Location"/>
-                <MDBInput className="input" label="Kennel name" />
-                <MDBBtn color="warning" >Search</MDBBtn>
-                <div className="or">
-                    <Col sm={5} style={{padding: 0}}><hr></hr></Col>
-                    <Col sm={2} className="or-login grey-text">OR</Col>
-                    <Col sm={5} style={{padding: 0}}><hr></hr></Col>
-                </div>
-                <p>LIST BY CITY</p>
-                </div>
-            </Col>
+                  );
+                })}
+              </div>
+            </div>
+          </Col>
+
+          {/* <Col sm={1}></Col> */}
+          <Col sm={4}>
+            <div className="search-right">
+              <h4 style={{ fontSize: "23px", color: "#4D4751" }}>
+                Find Kennel name
+              </h4>
+              <MDBInput className="input" label="Location" />
+              <MDBInput className="input" label="Kennel name" />
+              <MDBBtn color="warning">Search</MDBBtn>
+              <div className="or">
+                <Col sm={5} style={{ padding: 0 }}>
+                  <hr></hr>
+                </Col>
+                <Col sm={2} className="or-login grey-text">
+                  OR
+                </Col>
+                <Col sm={5} style={{ padding: 0 }}>
+                  <hr></hr>
+                </Col>
+              </div>
+              <p>LIST BY CITY</p>
+            </div>
+          </Col>
         </Row>
       </Container>
     </div>
