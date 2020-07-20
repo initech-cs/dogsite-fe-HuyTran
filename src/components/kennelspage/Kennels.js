@@ -124,16 +124,16 @@ export default function Kennels() {
                         className="kennel-name"
                         style={{ paddingLeft: "0" }}
                       >
-                        <a href="/kennels">{item.name}</a>
+                        <Link to={`/kennels/${item._id}`}>{item.name}</Link>
                       </Col>
                       <Col sm={2}>
                         <i class="fas fa-search" aria-hidden="true"></i>
                       </Col>
                       <Col sm={3} className="kennel-city">
-                        <a href="">HCM city</a>
+                      <Link to="">HCM city</Link>
                       </Col>
                       <Col sm={3} className="kennel-contact">
-                        <a href="">{item.phone}</a>
+                      <Link to="">{item.phone}</Link>
                       </Col>
                     </Row>
                   );

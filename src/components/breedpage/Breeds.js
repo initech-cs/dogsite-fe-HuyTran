@@ -2,15 +2,36 @@ import React, { Fragment, useEffect, useState } from "react";
 import "./Breeds.css";
 import { Row, Col, Button, Container, Card } from "react-bootstrap";
 import { MDBBtn, MDBIcon } from "mdbreact";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 export default function Breeds() {
   const [breedList, setBreedList] = useState([]);
+  const [filterBtnBreed, setFilterBtnBreed] = useState([]);
+  const [filterBreed, setFilterBreed] = useState([])
 
   const getBreedList = async () => {
     let data = await fetch(`${process.env.REACT_APP_API_URL}/breeds`);
     let result = await data.json();
+
+    let set = new Set();
+    for (let i = 0; i < result.data.length; i++) {
+      if (
+        result.data[i].breedGroup !== "" &&
+        result.data[i].breedGroup !== undefined
+      )
+        set.add(result.data[i].breedGroup);
+    }
+
+    setFilterBtnBreed(Array.from(set));
     setBreedList(result.data);
+  };
+
+  const handleBtn = async (breedgroup) => {
+    let data = await fetch(`${process.env.REACT_APP_API_URL}/search?breedgroup=${breedgroup}`);
+    let result = await data.json()
+
+    setFilterBreed(result.data)
+    console.log(result)
   };
 
   useEffect(() => {
@@ -122,97 +143,53 @@ export default function Breeds() {
             Filter Breeds
           </h1>
           <Row className="filter-row">
-            <Col sm={5} className="filter">
-              <h6>SIZE</h6>
-              <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-amber">
-                  Small
-                </button>
-                <button type="button" class="btn btn-amber">
-                  Medium
-                </button>
-                <button type="button" class="btn btn-amber">
-                  Large
-                </button>
-              </div>
-            </Col>
-            <Col sm={5} className="filter">
-              <h6>ENERGY LEVEL</h6>
-              <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-amber">
-                  Low
-                </button>
-                <button type="button" class="btn btn-amber">
-                  Moderate
-                </button>
-                <button type="button" class="btn btn-amber">
-                  High
-                </button>
-              </div>
-            </Col>
+            <div className="filter">
+              {filterBtnBreed.map((item) => {
+                return (
+                  <div
+                    class="btn-group"
+                    role="group"
+                    aria-label="Basic example"
+                  >
+                    <button
+                      type="button"
+                      class="btn btn-amber"
+                      value={item}
+                      onClick={() => handleBtn(item)}
+                    >
+                      {item}
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
             <Col sm={2} className="filter">
               <a href="">Reset Filters (0)</a>
-            </Col>
-          </Row>
-          <Row className="filter-row">
-            <Col sm={4} className="filter">
-              <h6>VOCALITY</h6>
-              <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-amber">
-                  Small
-                </button>
-                <button type="button" class="btn btn-amber">
-                  Medium
-                </button>
-                <button type="button" class="btn btn-amber">
-                  Large
-                </button>
-              </div>
-            </Col>
-            <Col sm={4} className="filter">
-              <h6>EASY OF TRAINNING</h6>
-              <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-amber">
-                  Easy
-                </button>
-                <button type="button" class="btn btn-amber">
-                  Average
-                </button>
-                <button type="button" class="btn btn-amber">
-                  Difficult
-                </button>
-              </div>
-            </Col>
-            <Col sm={4} className="filter">
-              <h6>GROOMING REQUIREMENTS</h6>
-              <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-amber">
-                  Low
-                </button>
-                <button type="button" class="btn btn-amber">
-                  Moderate
-                </button>
-                <button type="button" class="btn btn-amber">
-                  High
-                </button>
-              </div>
             </Col>
           </Row>
         </div>
         <div className="result-section">
           <Row>
-            {breedList.map((item) => {
-              return (
-                <Col sm={3} className="result-items">
-                  <Card>
-                    <Card.Img  style={{height:"200px"}} variant="top" src={item.image} />
-                    <Card.Body className="breed-name">
-                      <Link to="/breeds/bull-terrier">{item.name}</Link>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              );
-            })}
+            {
+          
+                filterBreed.map((item) => {
+                  return (
+                    <Col sm={3} className="result-items">
+                      <Card>
+                        <Card.Img
+                          style={{ height: "200px" }}
+                          variant="top"
+                          src={item.image}
+                        />
+                        <Card.Body className="breed-name">
+                          <Link to="/breeds" style={{color: "darkgrey", fontWeight:"bolder"}}>{item.name}</Link>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  )}
+                )}
+            
+
           </Row>
         </div>
         <div className="pagination">

@@ -196,17 +196,17 @@ h2.sub-title span {
 }
 
 .breed-item { 
-	width:49% !important;
-	max-width:49% !important;
+	/* width:49% !important;
+	max-width:49% !important; */
 	padding-left:15px;
 	padding-right:15px;
 }
 
-.breed {
+/* .breed {
 	margin-bottom: 60px;
 	background-color: #fff;
 	display: flex;
-}
+} */
 
 .breed-info {
 	color: #b3b3b3;
@@ -232,6 +232,7 @@ h2.sub-title span {
 .breed-photo{
     padding-left: 0
 }
+
 h3.breed-name {
 	font-size: 24px;
 	font-weight: 800;

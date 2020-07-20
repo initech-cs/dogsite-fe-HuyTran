@@ -9,10 +9,11 @@ import {
   Form,
   Button,
 } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 
 export default function Purebred() {
   const [purebredList, setPurebredList] = useState([]);
-
+  const id = useParams().kennelId
   const getPurebredList = async (kennelId) => {
     let data = await fetch(
       `${process.env.REACT_APP_API_URL}/kennels/${kennelId}/purebred`
@@ -22,7 +23,7 @@ export default function Purebred() {
   };
 
   useEffect(() => {
-    getPurebredList();
+    getPurebredList(id);
   }, []);
 
   return (
@@ -219,11 +220,8 @@ export default function Purebred() {
               </div>
             </div>
           </Col>
-          <Col sm={4}></Col>
-        </Row>
-        <Row className="contact">
-          <Col sm={5}>
-            <form class="text-center contact-form border-light p-5" action="#!">
+          <Col sm={4}>
+          <form class="text-center contact-form border-light p-5" action="#!">
               <p class="h4 mb-4">Contact us</p>
 
               <input
@@ -281,7 +279,9 @@ export default function Purebred() {
               </button>
             </form>
           </Col>
-          <Col sm={7}>
+        </Row>
+        <Row className="contact">
+          <Col sm={12}>
             <div className="contact-map"></div>
           </Col>
         </Row>

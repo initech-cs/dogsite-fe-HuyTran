@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   Row,
   Col,
@@ -9,26 +9,25 @@ import {
   FormGroup,
   Carousel,
 } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+
+import { useParams, Link } from "react-router-dom";
 
 import "./Jumbotron.css";
 
 export const Jumbotron = () => {
-  const { id } = useParams(); // id = :id (app.js)
+  const { kennelId } = useParams(); // id = :id (app.js)
   const [kennel, setKennel] = useState({});
 
   const getKennel = async (id) => {
     const data = await fetch(`${process.env.REACT_APP_API_URL}/kennels/${id}`);
     const result = await data.json();
-    console.log(result)
-    setKennel(result.data)
-  } 
+    setKennel(result.data);
+  };
 
   useEffect(() => {
-    getKennel(id)
-  }, [])
+    getKennel(kennelId);
+  }, []);
 
-  console.log(kennel.purebreds);
   return (
     <div>
       {/* -------------------------------JUMBOTRON 1------------------------------- */}
@@ -36,25 +35,7 @@ export const Jumbotron = () => {
         <Col sm={12} xs={12} className="img">
           <Carousel>
             <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src="https://media.gettyimages.com/photos/three-pit-bull-dogs-picture-id698650598?s=2048x2048"
-                alt="First slide"
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src="https://media.gettyimages.com/photos/no-holding-back-picture-id171318092?s=2048x2048"
-                alt="Second slide"
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src="https://media.gettyimages.com/photos/playtime-picture-id175590776?s=2048x2048"
-                alt="Third slide"
-              />
+              <img className="d-block w-100" src={kennel.images} />{" "}
             </Carousel.Item>
           </Carousel>
         </Col>
@@ -76,7 +57,7 @@ export const Jumbotron = () => {
         <Container>
           <div className="section-title">
             <h1 className="title">
-              Welcome to <span>Teepit Kennel</span>
+              Welcome to <span>{kennel.name}</span>
             </h1>
             <h2 className="sub-title">
               WE RAISE & BREEDING OVER <span>80 DOG BREEDS</span>
@@ -203,278 +184,65 @@ export const Jumbotron = () => {
               Large
             </a>
           </Col>
-          <Row>
-            <Col xs={6} className="breed-item">
-              <div className="breed">
-                <Col sm={6} className="breed-photo">
-                  <img
-                    src="http://demo.lemonthemes.com/joffrey/supernova/images/breeds/1.jpg"
-                    alt="breed"
-                  />
-                </Col>
-                <Col sm={6} className="breed-info">
-                  <h3 className="breed-name">German Shepherd</h3>
-                  <ul className="breed-desc">
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                  </ul>
-                </Col>
-              </div>
-            </Col>
-            <Col xs={6} className="breed-item">
-              <div className="breed">
-                <Col sm={6} className="breed-photo">
-                  <img
-                    src="http://demo.lemonthemes.com/joffrey/supernova/images/breeds/2.jpg"
-                    alt="breed"
-                  />
-                </Col>
-                <Col sm={6} className="breed-info">
-                  <h3 className="breed-name">German Shepherd</h3>
-                  <ul className="breed-desc">
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                  </ul>
-                </Col>
-              </div>
-            </Col>
-            <Col xs={6} className="breed-item">
-              <div className="breed">
-                <Col sm={6} className="breed-photo">
-                  <img
-                    src="http://demo.lemonthemes.com/joffrey/supernova/images/breeds/3.jpg"
-                    alt="breed"
-                  />
-                </Col>
-                <Col sm={6} className="breed-info">
-                  <h3 className="breed-name">German Shepherd</h3>
-                  <ul className="breed-desc">
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                  </ul>
-                </Col>
-              </div>
-            </Col>
-            <Col xs={6} className="breed-item">
-              <div className="breed">
-                <Col sm={6} className="breed-photo">
-                  <img
-                    src="http://demo.lemonthemes.com/joffrey/supernova/images/breeds/4.jpg"
-                    alt="breed"
-                  />
-                </Col>
-                <Col sm={6} className="breed-info">
-                  <h3 className="breed-name">German Shepherd</h3>
-                  <ul className="breed-desc">
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                  </ul>
-                </Col>
-              </div>
-            </Col>
-            <Col xs={6} className="breed-item">
-              <div className="breed">
-                <Col sm={6} className="breed-photo">
-                  <img
-                    src="http://demo.lemonthemes.com/joffrey/supernova/images/breeds/5.jpg"
-                    alt="breed"
-                  />
-                </Col>
-                <Col sm={6} className="breed-info">
-                  <h3 className="breed-name">German Shepherd</h3>
-                  <ul className="breed-desc">
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                  </ul>
-                </Col>
-              </div>
-            </Col>
-            <Col xs={6} className="breed-item">
-              <div className="breed">
-                <Col sm={6} className="breed-photo">
-                  <img
-                    src="http://demo.lemonthemes.com/joffrey/supernova/images/breeds/6.jpg"
-                    alt="breed"
-                  />
-                </Col>
-                <Col sm={6} className="breed-info">
-                  <h3 className="breed-name">German Shepherd</h3>
-                  <ul className="breed-desc">
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                  </ul>
-                </Col>
-              </div>
-            </Col>
-          </Row>
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            {kennel.purebreds ? (
+              kennel.purebreds.map((item) => {
+                return (
+                  <Col sm={6} style={{ display: "flex", marginBottom: "20px" }}>
+                    <Col sm={6} className="breed-photo">
+                      <Link to={`/kennels/${kennelId}/purebreds`}>
+                        <img
+                          src={item.images}
+                          alt="breed"
+                          style={{ maxWidth: "400px" }}
+                        />
+                      </Link>
+                    </Col>
+                    <Col sm={6} className="breed-info">
+                      <h3 className="breed-name">{item.name}</h3>
+                      <ul className="breed-desc">
+                        <li>
+                          Name:
+                          <span>{item.name}</span>
+                        </li>
+                        <li>
+                          Breed:
+                          <span>{item.breed}</span>
+                        </li>
+                        <li>
+                          Age:
+                          <span>{item.age}</span>
+                        </li>
+                        <li>
+                          Height:
+                          <span>{item.height}</span>
+                        </li>
+                        <li>
+                          Weight:
+                          <span>{item.weight}</span>
+                        </li>
+                        <li>
+                          Litter:
+                          <span>{item.litter}</span>
+                        </li>
+                        <li>
+                          Price:
+                          <span>{item.price}</span>
+                        </li>
+                        <li>
+                          Gender:
+                          <span>{item.gender}</span>
+                        </li>
+                      </ul>
+                    </Col>
+                  </Col>
+                );
+              })
+            ) : (
+              <div>Not have purebred</div>
+            )}
+          </div>
+
           <Col sm={12} style={{ textAlign: "center" }}>
             <Button className="view-more">View more</Button>
           </Col>
