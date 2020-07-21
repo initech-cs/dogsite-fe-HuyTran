@@ -21,6 +21,7 @@ export const Jumbotron = () => {
   const getKennel = async (id) => {
     const data = await fetch(`${process.env.REACT_APP_API_URL}/kennels/${id}`);
     const result = await data.json();
+    console.log(result.data)
     setKennel(result.data);
   };
 
@@ -244,7 +245,7 @@ export const Jumbotron = () => {
           </div>
 
           <Col sm={12} style={{ textAlign: "center" }}>
-            <Button className="view-more">View more</Button>
+            <Link to={`/kennels/${kennelId}/purebreds`}><Button className="view-more">View more</Button></Link>
           </Col>
         </Container>
       </Row>
@@ -359,7 +360,7 @@ export const Jumbotron = () => {
                       name="name"
                       required="required"
                       placeholder="Your Name"
-                      style={{ animationName: "none" }}
+                       
                     />
                     <Form.Control
                       type="email"
@@ -367,7 +368,7 @@ export const Jumbotron = () => {
                       name="email"
                       required="required"
                       placeholder="Your Email Address"
-                      style={{ animationName: "none" }}
+                   
                     />
                     <Form.Control
                       type="text"
@@ -375,7 +376,7 @@ export const Jumbotron = () => {
                       name="subject"
                       required="required"
                       placeholder="Your Subject"
-                      style={{ animationName: "none" }}
+                   
                     />
                   </FormGroup>
                   <FormGroup className="col-sm-6">
@@ -397,7 +398,7 @@ export const Jumbotron = () => {
                     <Button
                       className="view-more"
                       type="submit"
-                      style={{ animationName: "none" }}
+                    
                     >
                       Submit Message
                     </Button>

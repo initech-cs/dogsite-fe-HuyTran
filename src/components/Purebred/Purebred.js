@@ -221,7 +221,7 @@ export default function Purebred() {
             </div>
           </Col>
           <Col sm={4}>
-          <form class="text-center contact-form border-light p-5" action="#!">
+          <form class="text-center contact-form-purebred border-light p-5" action="#!">
               <p class="h4 mb-4">Contact us</p>
 
               <input

@@ -6,27 +6,23 @@ import { MDBInput, MDBBtn } from "mdbreact";
 
 export default function Kennels() {
   const [kennels, setKennels] = useState([])
-  const [purebredList, setPurebredList] = useState([]);
+  const [searchName, setSearchName] = useState("")
 
   const getKennelList = async () => {
     let data = await fetch(`${process.env.REACT_APP_API_URL}/kennels`);
     let result = await data.json();
-    console.log(result)
     setKennels(result.data);
   };
-
-  const getPurebredList = async (kennelId) => {
-    let data = await fetch(
-      `${process.env.REACT_APP_API_URL}/kennels/${kennelId}/purebred`
-    );
-    let result = await data.json();
-    console.log(result)
-    setPurebredList(result.data);
-  };
   
+  const handleInput = (e) => {
+    // e.preventDefault()
+    setSearchName(e.target.value)
+    console.log(searchName)
+  }
+
   useEffect(() => {
     getKennelList();
-    getPurebredList()
+    // getPurebredList()
   }, []);
 
   return (
@@ -101,7 +97,7 @@ export default function Kennels() {
                   <MDBInput className="input" label="Location" />
                 </Col>
                 <Col sm={6} style={{ paddingLeft: "5px" }}>
-                  <MDBInput className="input" label="Kennel name" />
+                  <MDBInput onChange={handleInput} className="input" label="Kennel name" />
                 </Col>
               </Row>
               <div className="search-top">
@@ -127,7 +123,7 @@ export default function Kennels() {
                         <Link to={`/kennels/${item._id}`}>{item.name}</Link>
                       </Col>
                       <Col sm={2}>
-                        <i class="fas fa-search" aria-hidden="true"></i>
+                        <i className="fas fa-search" aria-hidden="true"></i>
                       </Col>
                       <Col sm={3} className="kennel-city">
                       <Link to="">HCM city</Link>

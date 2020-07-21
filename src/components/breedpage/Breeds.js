@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export default function Breeds() {
   const [breedList, setBreedList] = useState([]);
   const [filterBtnBreed, setFilterBtnBreed] = useState([]);
-  const [filterBreed, setFilterBreed] = useState([])
+  const [filterBreed, setFilterBreed] = useState([]);
 
   const getBreedList = async () => {
     let data = await fetch(`${process.env.REACT_APP_API_URL}/breeds`);
@@ -27,11 +27,13 @@ export default function Breeds() {
   };
 
   const handleBtn = async (breedgroup) => {
-    let data = await fetch(`${process.env.REACT_APP_API_URL}/search?breedgroup=${breedgroup}`);
-    let result = await data.json()
+    let data = await fetch(
+      `${process.env.REACT_APP_API_URL}/search?breedgroup=${breedgroup}`
+    );
+    let result = await data.json();
 
-    setFilterBreed(result.data)
-    console.log(result)
+    setFilterBreed(result.data);
+    console.log(result);
   };
 
   useEffect(() => {
@@ -170,26 +172,27 @@ export default function Breeds() {
         </div>
         <div className="result-section">
           <Row>
-            {
-          
-                filterBreed.map((item) => {
-                  return (
-                    <Col sm={3} className="result-items">
-                      <Card>
-                        <Card.Img
-                          style={{ height: "200px" }}
-                          variant="top"
-                          src={item.image}
-                        />
-                        <Card.Body className="breed-name">
-                          <Link to="/breeds" style={{color: "darkgrey", fontWeight:"bolder"}}>{item.name}</Link>
-                        </Card.Body>
-                      </Card>
-                    </Col>
-                  )}
-                )}
-            
-
+            {filterBreed.map((item) => {
+              return (
+                <Col sm={3} className="result-items">
+                  <Card>
+                    <Card.Img
+                      style={{ height: "200px" }}
+                      variant="top"
+                      src={item.image}
+                    />
+                    <Card.Body className="breed-name">
+                      <Link
+                        to="/breeds"
+                        style={{ color: "darkgrey", fontWeight: "bolder" }}
+                      >
+                        {item.name}
+                      </Link>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              );
+            })}
           </Row>
         </div>
         <div className="pagination">

@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import { Nav, Navbar, Container, Row, NavDropdown } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LoginModal from "../loginModal/LoginModal";
 import Signup from "../SignUpModal/SignUp"
 
 export default function CustomNavbar() {
-
-  const [token, setToken] = useState("");
+  const [logged, setLogged] = useState("")
+  const [token, setToken] = useState();
+  const show = useSelector(state => state.showLogin)
   
   useEffect(() => {
     setToken(localStorage.getItem("token"));
-  }, []);
+  }, [show]);
 
   const dispatch = useDispatch();
-
   const handleLogin = () => {
     dispatch({ type: "LOGIN", payload: { showLogin: true } });
   };
@@ -25,15 +25,23 @@ export default function CustomNavbar() {
         authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
-    if (res.ok) {
-      localStorage.removeItem("token");
-      dispatch({ type: "LOGOUT", payload: {} });
-      // setUser(null)
-    } else {
-      console.log("dont mess with my app");
-    }
-  };
+    
+    // if (res.ok) {
+    //   localStorage.removeItem("token");
+    //   dispatch({ type: "LOGOUT", payload: {} });
+    //   // setUser(null)
+    // } else {
+    //   console.log("dont mess with my app");
+    // }
 
+    if (token) {
+        localStorage.removeItem("token");
+      } else {
+        console.log("dont mess with my app");
+      }
+      window.location.reload()
+  };
+  
   const handleSignup = () => {
     dispatch({ type: "SIGNUP", payload: {showSignup: true}})
   }
