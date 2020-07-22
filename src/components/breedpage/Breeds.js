@@ -1,16 +1,20 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "./Breeds.css";
-import { Row, Col, Button, Container, Card } from "react-bootstrap";
+import { Row, Col, Button, Container, Card, Spinner } from "react-bootstrap";
 import { MDBBtn, MDBIcon } from "mdbreact";
 import { Link } from "react-router-dom";
 
 export default function Breeds() {
-  const [breedList, setBreedList] = useState([]);
+  // const [breedList, setBreedList] = useState([]);
   const [filterBtnBreed, setFilterBtnBreed] = useState([]);
   const [filterBreed, setFilterBreed] = useState([]);
+  const [page, setPage] = useState(1);
 
   const getBreedList = async () => {
-    let data = await fetch(`${process.env.REACT_APP_API_URL}/breeds`);
+    console.log(`${process.env.REACT_APP_API_URL}/breeds/`);
+    let data = await fetch(
+      `${process.env.REACT_APP_API_URL}/breeds?page=${page}`
+    );
     let result = await data.json();
 
     let set = new Set();
@@ -23,7 +27,7 @@ export default function Breeds() {
     }
 
     setFilterBtnBreed(Array.from(set));
-    setBreedList(result.data);
+    setFilterBreed(result.data);
   };
 
   const handleBtn = async (breedgroup) => {
@@ -36,9 +40,21 @@ export default function Breeds() {
     console.log(result);
   };
 
+  const left = () => {
+    setPage(page - 1);
+  };
+
+  const right = () => {
+    setPage(page + 1);
+  };
+
   useEffect(() => {
     getBreedList();
-  }, []);
+  }, [page]);
+
+  // if(breedList === null){
+  //   return(<div><Spinner animation="border" /></div>)
+  // }
 
   return (
     <div className="body-breeds">
@@ -196,16 +212,25 @@ export default function Breeds() {
           </Row>
         </div>
         <div className="pagination">
-          <Fragment>
-            <MDBBtn color="amber">
-              <MDBIcon icon="angle-left" className="mr-5" />
-              Left
-            </MDBBtn>
-            <MDBBtn color="amber">
-              Right
-              <MDBIcon icon="angle-right" className="ml-5" />
-            </MDBBtn>
-          </Fragment>
+          {page === 1 ? (
+            <Fragment>
+              <MDBBtn color="amber" onClick={right}>
+                Right
+                <MDBIcon icon="angle-right" className="ml-5" />
+              </MDBBtn>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <MDBBtn color="amber" onClick={left}>
+                <MDBIcon icon="angle-left" className="mr-5" />
+                Left
+              </MDBBtn>
+              <MDBBtn color="amber" onClick={right}>
+                Right
+                <MDBIcon icon="angle-right" className="ml-5" />
+              </MDBBtn>{" "}
+            </Fragment>
+          )}
         </div>
       </Container>
     </div>

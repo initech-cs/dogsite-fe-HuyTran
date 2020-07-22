@@ -13,8 +13,8 @@ import { useParams } from "react-router-dom";
 
 export default function Purebred() {
   const [purebredList, setPurebredList] = useState([]);
-  const id = useParams().kennelId
-  
+  const id = useParams().kennelId;
+
   const getPurebredList = async (kennelId) => {
     let data = await fetch(
       `${process.env.REACT_APP_API_URL}/kennels/${kennelId}/purebred`
@@ -30,7 +30,7 @@ export default function Purebred() {
   return (
     <div style={{ backgroundColor: "#efeef1", padding: "50px 0 50px 0" }}>
       <Container>
-      {purebredList.map((item) => {
+        {purebredList.map((item) => {
           return (
             <Row className="purebred">
               <Row style={{ marginBottom: "20px" }}>
@@ -100,11 +100,11 @@ export default function Purebred() {
                     <h4 style={{ fontWeight: "bold", letterSpacing: "1px" }}>
                       Rate:
                     </h4>
-                    <i class="far fa-2x fa-star"></i>
-                    <i class="far fa-2x fa-star"></i>
-                    <i class="far fa-2x fa-star"></i>
-                    <i class="far fa-2x fa-star"></i>
-                    <i class="far fa-2x fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
                   </div>
 
                   <Row>
@@ -128,31 +128,29 @@ export default function Purebred() {
                     {item.name}'s puppies
                   </h1>
                 </Col>
-                {
-                  item.puppyImages.map(e => {
-                    return(
-                      <Row>
+                {item.puppyImages.map((e) => {
+                  return (
+                    <Row>
                       <Col sm={3}>
-                      <Card style={{ width: "16rem" }}>
-                        <Card.Img
-                          style={{ height: "12rem" }}
-                          variant="top"
-                          src={e}
-                        />
-                        {/* <Card.Body className="title-body">
+                        <Card style={{ width: "16rem" }}>
+                          <Card.Img
+                            style={{ height: "12rem" }}
+                            variant="top"
+                            src={e}
+                          />
+                          {/* <Card.Body className="title-body">
                           <Card.Title className="title">{item.name}'s puppies</Card.Title>
                         </Card.Body> */}
-                      </Card>
-                    </Col>
+                        </Card>
+                      </Col>
                     </Row>
-                    )
-                  })
-                }
+                  );
+                })}
               </Row>
             </Row>
           );
         })}
-        
+
         <Row className="comment">
           <Col sm={8}>
             <div className="left-column">
@@ -222,7 +220,10 @@ export default function Purebred() {
             </div>
           </Col>
           <Col sm={4}>
-          <form class="text-center contact-form-purebred border-light p-5" action="#!">
+            <form
+              class="text-center contact-form-purebred border-light p-5"
+              action="#!"
+            >
               <p class="h4 mb-4">Contact us</p>
 
               <input

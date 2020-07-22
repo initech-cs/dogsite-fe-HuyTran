@@ -87,6 +87,8 @@ export default function UserProfile() {
             >
               Create Kennel
             </MDBBtn>
+            <MDBBtn>Update Kennel</MDBBtn>
+            <MDBBtn>Delete Kennel</MDBBtn>
             <MDBBtn>Share</MDBBtn>
           </Col>
         </Row>
