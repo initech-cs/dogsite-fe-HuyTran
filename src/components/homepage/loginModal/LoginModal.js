@@ -21,7 +21,7 @@ export default function LoginModal() {
   const handleFacebook = async (resp) => {
     if (resp && resp.accessToken) {
       const user = await responseFacebook(resp);
-      console.log(user);
+      // console.log(user)
 
       if (user instanceof Error) {
         console.log("Oops! Something happened");

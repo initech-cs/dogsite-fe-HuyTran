@@ -5,20 +5,20 @@ import { Link } from "react-router-dom";
 import { MDBInput, MDBBtn } from "mdbreact";
 
 export default function Kennels() {
-  const [kennels, setKennels] = useState([])
-  const [searchName, setSearchName] = useState("")
+  const [kennels, setKennels] = useState([]);
+  const [searchName, setSearchName] = useState("");
 
   const getKennelList = async () => {
     let data = await fetch(`${process.env.REACT_APP_API_URL}/kennels`);
     let result = await data.json();
     setKennels(result.data);
   };
-  
-  const handleInput = (e) => {
-    // e.preventDefault()
-    setSearchName(e.target.value)
-    console.log(searchName)
-  }
+
+  const searchList = async () => {
+    let data = await fetch(`${process.env.REACT_APP_API_URL}/kennels?search=${searchName}`);
+    let result = await data.json();
+  };
+  searchList();
 
   useEffect(() => {
     getKennelList();
@@ -33,7 +33,7 @@ export default function Kennels() {
             The most famous sire <a>&</a> lady
           </h1>
           <Row>
-          <Col>
+            <Col>
               <Card style={{ width: "16rem" }}>
                 <Card.Img
                   style={{ height: "12rem" }}
@@ -97,12 +97,16 @@ export default function Kennels() {
                   <MDBInput className="input" label="Location" />
                 </Col>
                 <Col sm={6} style={{ paddingLeft: "5px" }}>
-                  <MDBInput onChange={handleInput} className="input" label="Kennel name" />
+                  <MDBInput
+                    onChange={(e) => setSearchName(e.target.value)}
+                    className="input"
+                    label="Kennel name"
+                  />
                 </Col>
               </Row>
               <div className="search-top">
                 <p>Search by state</p>
-                <MDBBtn color="warning">Search</MDBBtn>
+                <MDBBtn color="warning" onClick={searchList}>Search</MDBBtn>
               </div>
               <div className="table">
                 <Row className="title">
@@ -126,10 +130,10 @@ export default function Kennels() {
                         <i className="fas fa-search" aria-hidden="true"></i>
                       </Col>
                       <Col sm={3} className="kennel-city">
-                      <Link to="">HCM city</Link>
+                        <Link to="">HCM city</Link>
                       </Col>
                       <Col sm={3} className="kennel-contact">
-                      <Link to="">{item.phone}</Link>
+                        <Link to="">{item.phone}</Link>
                       </Col>
                     </Row>
                   );

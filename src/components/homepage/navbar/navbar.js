@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
-import { Nav, Navbar, Container, Row, NavDropdown } from "react-bootstrap";
+import { Nav, Navbar, Container, Row, Dropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import LoginModal from "../loginModal/LoginModal";
-import Signup from "../SignUpModal/SignUp"
+import Signup from "../SignUpModal/SignUp";
+import { responseFacebook } from "../loginModal/LoginAPI";
+import axios from 'axios'
+import {useHistory, useParams, Link} from 'react-router-dom'
 
 export default function CustomNavbar() {
-  const [logged, setLogged] = useState("")
+  const [logged, setLogged] = useState("");
   const [token, setToken] = useState();
-  const show = useSelector(state => state.showLogin)
-  
-  useEffect(() => {
-    setToken(localStorage.getItem("token"));
-  }, [show]);
+  const [user, setUser] = useState({});
+  const history = useHistory()
+
+  const show = useSelector((state) => state.showLogin);
 
   const dispatch = useDispatch();
   const handleLogin = () => {
     dispatch({ type: "LOGIN", payload: { showLogin: true } });
+  };
+  const handleSignup = () => {
+    dispatch({ type: "SIGNUP", payload: { showSignup: true } });
   };
 
   const handleLogout = async () => {
@@ -25,47 +30,35 @@ export default function CustomNavbar() {
         authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
-    
-    // if (res.ok) {
-    //   localStorage.removeItem("token");
-    //   dispatch({ type: "LOGOUT", payload: {} });
-    //   // setUser(null)
-    // } else {
-    //   console.log("dont mess with my app");
-    // }
 
     if (token) {
-        localStorage.removeItem("token");
-      } else {
-        console.log("dont mess with my app");
-      }
-      window.location.reload()
-  };
-  
-  const handleSignup = () => {
-    dispatch({ type: "SIGNUP", payload: {showSignup: true}})
+      localStorage.removeItem("token");
+      history.replace("/")
+    } else {
+      console.log("dont mess with my app");
+    }
+    window.location.reload()
   }
 
-  // const fetchUser = async () => {
-  //   const token = localStorage.getItem("token");
-  //   if (!token) {
-  //     return;
-  //   }
-  
-  //   try {
-  //     const res = await axios.get(`${process.env.REACT_APP_API_URL}/users/me`, {
-  //       method: "GET",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     return res.data;
-  //   } catch (error) {
-  //     localStorage.removeItem("token");
-  //   }
-  // }
-  
+  const getUserInfo = async () => {
+
+    let token = localStorage.getItem("token");
+
+    const data = await axios.get(`${process.env.REACT_APP_API_URL}/users/me`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    setUser(data.data.data)
+  };
+
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+    getUserInfo();
+  }, [show]);
+
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -78,14 +71,28 @@ export default function CustomNavbar() {
             <Nav.Link href="/dogcare">Health & Dog care</Nav.Link>
           </Nav>
           {token ? (
-            <Nav>
-              <Nav.Link onClick={handleLogout}> Logout </Nav.Link>
-            </Nav>
+            <>
+              <Dropdown>
+                {user ? (
+                  <Dropdown.Toggle variant="warning" id="dropdown-basic">
+                    Hello, {user.name}
+                  </Dropdown.Toggle>
+                ) : (
+                  <Dropdown.Toggle variant="warning" id="dropdown-basic">
+                    Hello, user name
+                  </Dropdown.Toggle>
+                )}
+                <Dropdown.Menu>
+                  <Dropdown.Item><Link to={`/users/${user.id}`}>My profile</Link></Dropdown.Item>
+                  <Dropdown.Divider />
+                  <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+              {/*  */}
+            </>
           ) : (
             <Nav>
-              <Nav.Link onClick={handleLogin}>
-                LOGIN
-              </Nav.Link>
+              <Nav.Link onClick={handleLogin}>LOGIN</Nav.Link>
               <Nav.Link> | </Nav.Link>
               <Nav.Link onClick={handleSignup}>SIGN UP</Nav.Link>
             </Nav>
@@ -93,7 +100,7 @@ export default function CustomNavbar() {
         </Navbar.Collapse>
       </Navbar>
       <LoginModal />
-      <Signup/>
+      <Signup />
     </div>
   );
 }

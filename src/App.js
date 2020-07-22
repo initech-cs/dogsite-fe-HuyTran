@@ -11,31 +11,24 @@ import Breeds from "./components/breedpage/Breeds";
 import BreedDetail from "./components/breeddetailpage/BreedDetail";
 import Kennels from "./components/kennelspage/Kennels";
 import Purebred from "./components/Purebred/Purebred";
+import UserProfile from "./components/userProfile/UserProfile";
+import CreateKennelModal from "./components/createKennelModal/CreateKennelModal";
 
 function App() {
   return (
     <Router>
       <Navbar />
+      
       <LoginModal />
+      <CreateKennelModal/>
       {/* <Search/> */}
       <Switch>
-        <Route path="/purebreds" exact={true}>
-          <Purebred />
-        </Route>
-        <Route path="/kennels" exact={true}>
-          <Kennels />
-        </Route>
-        <Route path="/kennels/:kennelId/purebreds">
-          <Purebred/>
-        </Route>
-        <Route path="/kennels/:kennelId">
-          <KennelDetail />
-        </Route>
-
-        <Route path="/">
-          <Breeds />
-        </Route>
-        {/* <ProtectedRoute path="/profile"></ProtectedRoute> */}
+        <Route path="/users/:userId" exact={true}><UserProfile/></Route>
+        <Route path="/purebreds" exact={true}><Purebred /></Route>
+        <Route path="/kennels" exact={true}><Kennels /></Route>
+        <Route path="/kennels/:kennelId/purebreds"><Purebred/></Route>
+        <Route path="/kennels/:kennelId"><KennelDetail /></Route>
+        <Route path="/"><Breeds /></Route>
       </Switch>
     </Router>
   );

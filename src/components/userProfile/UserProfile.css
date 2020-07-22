@@ -1,0 +1,63 @@
+.user-profile-body{
+    background: #efeef1;
+
+}
+.header-section{
+    background: white;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    border-radius: 5px;
+    margin-top: 10px
+
+}
+
+.user-picture .img{
+    background: black;
+    height: 170px;
+    width: 170px;
+    /* position: relative; */
+    margin-top: 115px;
+    border: 2px solid white;
+    /* margin-left: 30px; */
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+
+}
+
+.user-info{
+    /* background: pink; */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 15px;
+}
+
+.user-edit{
+    text-align: right;
+    margin: 15px 0 15px 0;
+}
+
+.body-section{
+    margin-top: 50px;
+    
+}
+
+.about{
+    color: #646464;
+    background: white;
+    border-radius: 10px;
+    padding: 50px 30px 30px 30px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+
+}
+
+.info-left{
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+
+}
+
+.btn-default{
+    background: #FFBB33!important;
+    height: 30px;
+    padding: 5px;
+    min-width: 60px;
+    font-weight: bold;
+}

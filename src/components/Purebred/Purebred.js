@@ -14,6 +14,7 @@ import { useParams } from "react-router-dom";
 export default function Purebred() {
   const [purebredList, setPurebredList] = useState([]);
   const id = useParams().kennelId
+  
   const getPurebredList = async (kennelId) => {
     let data = await fetch(
       `${process.env.REACT_APP_API_URL}/kennels/${kennelId}/purebred`
