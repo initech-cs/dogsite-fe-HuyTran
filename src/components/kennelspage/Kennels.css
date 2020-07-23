@@ -1,0 +1,158 @@
+.body-kennel{
+    background-color: #efeef1;
+    font-family: helvetica, arial, sans-serif;
+    padding: 50px 0 50px 0
+}
+
+.normal-kennel{
+    text-align: center;
+}
+
+.normal-kennel .row{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.normal-kennel a{
+    font-size: x-large;
+    color: darkgray !important;
+    font-weight: bold;
+}
+/* .search-kennel{
+} */
+
+.search-kennel{
+    margin-top: 30px
+}
+
+.or{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.search-right{
+    background: white;
+    border-radius: 10px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+}
+
+.search-right .btn-warning{
+    width: 100%;
+    border-radius: 40px;
+    font-weight: bold;
+    font-size: initial;
+    height: 45px;
+}
+
+.search-right .btn-warning:hover{
+    background-color: #da9100 !important;
+}
+
+.search-right p{
+    font-size: 14px;
+    color: #ffaa00;
+}
+
+.search-right p:hover{
+    cursor: pointer;
+}
+
+.search-right .input{
+    border: 1px solid darkgrey !important;
+    border-radius: 5px !important;
+}
+
+.md-form>label{
+    padding-left: 15px;
+}
+
+.info-left{
+    background: white;
+    border-radius: 10px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.info-left .input{
+    border: 1px solid darkgrey !important;
+    border-radius: 5px !important;
+    height: 55px;
+}
+
+.info-left .input:hover{
+    border: 1px solid #cc8800 !important;
+}
+
+.info-left .search-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-top .btn-warning{
+    border-radius: 40px;
+    font-weight: bold;
+    font-size: initial;
+    height: 45px;
+}
+
+.search-top .btn-warning:hover{
+    background-color: #da9100 !important;
+}
+
+.search-top p{
+    font-size: 16px;
+    color: #ffaa00;
+    margin: 0;
+}
+
+.search-top p:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.info-left .table{
+    border-radius: 10px;
+    border: 1px solid rgb(212, 212, 212);
+    margin: 20px 0 20px 0;
+}
+
+.table .title{
+    margin: 0;
+    /* letter-spacing: 0.3px; */
+    font-weight: bold !important;
+    color: #646464;
+    background-color: #efeef1 ;
+    border-radius: 10px 10px 0 0;
+    padding: 10px 0 10px 0;
+}
+
+.table .content{
+    margin: 0 15px 0 15px;
+    letter-spacing: 1px;
+    padding: 10px 0 10px 0;
+    border-bottom: 1px solid rgb(221, 221, 221);
+    font-size: 14px;
+}
+
+.kennel-name a{
+    color: #cf8a00;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.kennel-contact a{
+    color: #FFAA00;
+    text-decoration: underline;
+}
+
+.kennel-city a{
+    color: black;
+}

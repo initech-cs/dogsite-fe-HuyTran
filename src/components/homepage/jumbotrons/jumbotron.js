@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Row,
   Col,
@@ -7,41 +7,58 @@ import {
   FormControl,
   Button,
   FormGroup,
+  Carousel,
 } from "react-bootstrap";
 
-import "./jumbotron.css";
+import { useParams, Link } from "react-router-dom";
 
-export default function jumbotron() {
+import "./Jumbotron.css";
+
+export const Jumbotron = () => {
+  const { kennelId } = useParams(); // id = :id (app.js)
+  const [kennel, setKennel] = useState({});
+
+  const getKennel = async (id) => {
+    const data = await fetch(`${process.env.REACT_APP_API_URL}/kennels/${id}`);
+    const result = await data.json();
+    console.log(result.data)
+    setKennel(result.data);
+  };
+
+  useEffect(() => {
+    getKennel(kennelId);
+  }, []);
+
   return (
     <div>
       {/* -------------------------------JUMBOTRON 1------------------------------- */}
       <Row id="hello">
-        <Col sm={7} xs={12} className="img">
-          <img
-            src="https://images8.alphacoders.com/375/thumb-1920-375995.jpg"
-            alt="First"
-            width="100%"
-          />
+        <Col sm={12} xs={12} className="img">
+          <Carousel>
+            <Carousel.Item>
+              <img className="d-block w-100" src={kennel.images} />{" "}
+            </Carousel.Item>
+          </Carousel>
         </Col>
-        <Col sm={5} xs={12} className="column">
+        {/* <Col sm={5} xs={12} className="column">
           <div className="right-column">
             <p className="jumboh1">Whether</p>
             <p className="jumboh2">
               Big <span style={{ color: "#FFC800" }}>or</span> Small
             </p>
             <p className="jumboh1">We have them all</p>
-            <a href="#our-breeds" class="btn">
+            <a href="#our-breeds" className="btn">
               view all breeds
             </a>
           </div>
-        </Col>
+        </Col> */}
       </Row>
       {/* -------------------------------JUMBOTRON 2------------------------------- */}
       <Row id="welcome">
         <Container>
           <div className="section-title">
             <h1 className="title">
-              Welcome to <span>Tindog</span>
+              Welcome to <span>{kennel.name}</span>
             </h1>
             <h2 className="sub-title">
               WE RAISE & BREEDING OVER <span>80 DOG BREEDS</span>
@@ -52,7 +69,10 @@ export default function jumbotron() {
               <div className="product">
                 <div className="product-image">
                   <a href="#">
-                    <img src="./images/1.png" alt="dog" />
+                    <img
+                      src="http://demo.lemonthemes.com/joffrey/supernova/images/product/1.png"
+                      alt="dog"
+                    />
                   </a>
                 </div>
                 <div className="product-info">
@@ -65,7 +85,10 @@ export default function jumbotron() {
               <div className="product">
                 <div className="product-image">
                   <a href="#">
-                    <img src="./images/2.png" alt="dog" />
+                    <img
+                      src="http://demo.lemonthemes.com/joffrey/supernova/images/product/2.png"
+                      alt="dog"
+                    />
                   </a>
                 </div>
                 <div className="product-info">
@@ -78,7 +101,10 @@ export default function jumbotron() {
               <div className="product">
                 <div className="product-image">
                   <a href="#">
-                    <img src="./images/3.png" alt="dog" />
+                    <img
+                      src="http://demo.lemonthemes.com/joffrey/supernova/images/product/3.png"
+                      alt="dog"
+                    />
                   </a>
                 </div>
                 <div className="product-info">
@@ -91,7 +117,10 @@ export default function jumbotron() {
               <div className="product">
                 <div className="product-image">
                   <a href="#">
-                    <img src="./images/4.png" alt="dog" />
+                    <img
+                      src="http://demo.lemonthemes.com/joffrey/supernova/images/product/4.png"
+                      alt="dog"
+                    />
                   </a>
                 </div>
                 <div className="product-info">
@@ -125,6 +154,7 @@ export default function jumbotron() {
                 height: "70px",
                 fontSize: "25px",
                 fontWeight: "600",
+                borderRadius: "5px",
               }}
             >
               GO
@@ -136,113 +166,86 @@ export default function jumbotron() {
       <Row id="our-breeds">
         <Container>
           <Col sm={12} className="section-title">
-            <h1 className="title">Our Breeds</h1>
+            <h1 className="title">Our Purebreds</h1>
             <h2 className="sub-title">
               ALL OUR DOGS ARE <span>WELL FED & CARED FOR</span>
             </h2>
           </Col>
           <Col sm={12} className="filter-button">
-            <a href="#our-breeds" class="btn">
+            <a href="#our-breeds" className="btn">
               All
             </a>
-            <a href="#our-breeds" class="btn">
+            <a href="#our-breeds" className="btn">
               Small
             </a>
-            <a href="#our-breeds" class="btn">
+            <a href="#our-breeds" className="btn">
               Medium
             </a>
-            <a href="#our-breeds" class="btn">
+            <a href="#our-breeds" className="btn">
               Large
             </a>
           </Col>
-          <Row>
-            <Col xs={6} className="breed-item">
-              <div className="breed">
-                <Col sm={6} className="breed-photo">
-                  <img src="./images/1.jpg" alt="breed" />
-                </Col>
-                <Col sm={6} className="breed-info">
-                  <h3 className="breed-name">German Shepherd</h3>
-                  <ul className="breed-desc">
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                  </ul>
-                </Col>
-              </div>
-            </Col>
-            <Col xs={6} className="breed-item">
-              <div className="breed">
-                <Col sm={6} className="breed-photo">
-                  <img src="images/1.jpg" alt="breed" />
-                </Col>
-                <Col sm={6} className="breed-info">
-                  <h3 className="breed-name">German Shepherd</h3>
-                  <ul className="breed-desc">
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                    <li>
-                      Ease of training
-                      <span>
-                        <strong>10</strong> / 10
-                      </span>
-                    </li>
-                  </ul>
-                </Col>
-              </div>
-            </Col>
-          </Row>
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            {kennel.purebreds ? (
+              kennel.purebreds.map((item) => {
+                return (
+                  <Col sm={6} style={{ display: "flex", marginBottom: "20px" }}>
+                    <Col sm={6} className="breed-photo">
+                      <Link to={`/kennels/${kennelId}/purebreds`}>
+                        <img
+                          src={item.images}
+                          alt="breed"
+                          style={{ maxWidth: "400px" }}
+                        />
+                      </Link>
+                    </Col>
+                    <Col sm={6} className="breed-info">
+                      <h3 className="breed-name">{item.name}</h3>
+                      <ul className="breed-desc">
+                        <li>
+                          Name:
+                          <span>{item.name}</span>
+                        </li>
+                        <li>
+                          Breed:
+                          <span>{item.breed}</span>
+                        </li>
+                        <li>
+                          Age:
+                          <span>{item.age}</span>
+                        </li>
+                        <li>
+                          Height:
+                          <span>{item.height}</span>
+                        </li>
+                        <li>
+                          Weight:
+                          <span>{item.weight}</span>
+                        </li>
+                        <li>
+                          Litter:
+                          <span>{item.litter}</span>
+                        </li>
+                        <li>
+                          Price:
+                          <span>{item.price}</span>
+                        </li>
+                        <li>
+                          Gender:
+                          <span>{item.gender}</span>
+                        </li>
+                      </ul>
+                    </Col>
+                  </Col>
+                );
+              })
+            ) : (
+              <div>Not have purebred</div>
+            )}
+          </div>
+
           <Col sm={12} style={{ textAlign: "center" }}>
-            <Button className="view-more">View more</Button>
+            <Link to={`/kennels/${kennelId}/purebreds`}><Button className="view-more">View more</Button></Link>
           </Col>
         </Container>
       </Row>
@@ -261,7 +264,7 @@ export default function jumbotron() {
                 <div className="breeder-image">
                   <a href="#">
                     <img
-                      src="./images/1_2.jpg"
+                      src="http://demo.lemonthemes.com/joffrey/supernova/images/staff/1.jpg"
                       alt="breeder"
                       style={{ width: "100%" }}
                     />
@@ -278,7 +281,7 @@ export default function jumbotron() {
                 <div className="breeder-image">
                   <a href="#">
                     <img
-                      src="./images/2_2.jpg"
+                      src="http://demo.lemonthemes.com/joffrey/supernova/images/staff/2.jpg"
                       alt="breeder"
                       style={{ width: "100%" }}
                     />
@@ -295,7 +298,7 @@ export default function jumbotron() {
                 <div className="breeder-image">
                   <a href="#">
                     <img
-                      src="./images/3_2.jpg"
+                      src="http://demo.lemonthemes.com/joffrey/supernova/images/staff/3.jpg"
                       alt="breeder"
                       style={{ width: "100%" }}
                     />
@@ -312,7 +315,7 @@ export default function jumbotron() {
                 <div className="breeder-image">
                   <a href="#">
                     <img
-                      src="./images/4_2.jpg"
+                      src="http://demo.lemonthemes.com/joffrey/supernova/images/staff/4.jpg"
                       alt="breeder"
                       style={{ width: "100%" }}
                     />
@@ -331,11 +334,9 @@ export default function jumbotron() {
         </Container>
       </Row>
       {/* -------------------------------JUMBOTRON 4------------------------------- */}
-      <Row id="puppies"></Row>
-
       <Row id="get-in-touch">
         <Container>
-          <div class="section-title">
+          <div className="section-title">
             <h1>Get in Touch</h1>
             <h2 className="sub-title">
               let’s get to know <span>each other</span>
@@ -346,7 +347,7 @@ export default function jumbotron() {
             <Col xs={12}>
               <Form
                 id="contact-form"
-                class="contact-form"
+                className="contact-form"
                 name="contact-form"
                 method="post"
                 action="#"
@@ -359,7 +360,7 @@ export default function jumbotron() {
                       name="name"
                       required="required"
                       placeholder="Your Name"
-                      style={{ animationName: "none" }}
+                       
                     />
                     <Form.Control
                       type="email"
@@ -367,7 +368,7 @@ export default function jumbotron() {
                       name="email"
                       required="required"
                       placeholder="Your Email Address"
-                      style={{ animationName: "none" }}
+                   
                     />
                     <Form.Control
                       type="text"
@@ -375,7 +376,7 @@ export default function jumbotron() {
                       name="subject"
                       required="required"
                       placeholder="Your Subject"
-                      style={{ animationName: "none" }}
+                   
                     />
                   </FormGroup>
                   <FormGroup className="col-sm-6">
@@ -389,9 +390,16 @@ export default function jumbotron() {
                     />
                   </FormGroup>
 
-                  <FormGroup className="col-sm-12" style={{textAlign: "center"}}>
+                  <FormGroup
+                    className="col-sm-12"
+                    style={{ textAlign: "center" }}
+                  >
                     {/* <h1 class="thank-you"><span>Thank you! Your mail has been sent!</span></h1>*/}
-                    <Button className="view-more" type="submit" style={{ animationName: "none"}}>
+                    <Button
+                      className="view-more"
+                      type="submit"
+                    
+                    >
                       Submit Message
                     </Button>
                   </FormGroup>
@@ -403,4 +411,6 @@ export default function jumbotron() {
       </Row>
     </div>
   );
-}
+};
+
+export default Jumbotron;
