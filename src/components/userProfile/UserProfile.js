@@ -10,7 +10,7 @@ export default function UserProfile() {
   const [kennels, setKennels] = useState([]);
   const [user, setUser] = useState({});
 
-  const {userId} = useParams()
+  const { userId } = useParams();
 
   const showCreate = useSelector((state) => state.showCreateKennel);
   const showUpdateUser = useSelector((state) => state.showUpdateUser);
@@ -30,7 +30,7 @@ export default function UserProfile() {
   };
 
   const getUserInfo = async () => {
-    let token = localStorage.getItem("token")
+    let token = localStorage.getItem("token");
 
     const data = await axios.get(`${process.env.REACT_APP_API_URL}/users/me`, {
       method: "GET",
@@ -38,50 +38,94 @@ export default function UserProfile() {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-    })
-    setUser(data.data.data)
-  }
+    });
+    setUser(data.data.data);
+  };
 
   useEffect(() => {
     getKennelList();
     getUserInfo();
     // getSingleUser()
-  }, [showCreate, showUpdateUser])
+  }, [showCreate, showUpdateUser]);
 
   return (
     <div className="user-profile-body">
       <Container>
-        <Row className="header-section">
-          <Col sm={2} className="user-picture">
-            <div className="img"></div>
-          </Col>
-          {user ? (
-            <Col sm={10} className="user-info">
-              <div>
-                <h4>{user.name}</h4>
-                <h6>{user.phone} </h6>
-                <h6>{user.email}</h6>
-              </div>
-              <div>Upload Image</div>
+        {user ? (
+          <Row
+            className="header-section"
+            style={{ backgroundImage: `url(${user.images})` }}
+          >
+            <Col sm={2} className="user-picture">
+              <img className="img" src={user.avatar} />
             </Col>
-          ) : (
             <Col sm={10} className="user-info">
-              <div>
-                <h4>UserName</h4>
-                <h6>City</h6>
-                <h6>Country</h6>
+              <div className="box">
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "5px",
+                  }}
+                >
+                  <i class="fas fa-dog"></i>
+                  <h4>{user.name}</h4>
+                </div>
+                <hr></hr>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "5px",
+                  }}
+                >
+                  <i class="fas fa-phone"></i>
+                  <h6>{user.phone} </h6>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "5px",
+                  }}
+                >
+                  <i class="far fa-envelope"></i>
+                  <h6>{user.email}</h6>
+                </div>
               </div>
-              <div>Upload Image</div>
             </Col>
-          )}
 
-          <Col sm={12} className="user-edit">
-            <MDBBtn>Inbox</MDBBtn>
-            <MDBBtn onClick={createKennelModal}>Create Kennel</MDBBtn>
-            <MDBBtn onClick={updateUserModal}>Update me</MDBBtn>
-            <MDBBtn>Share</MDBBtn>
-          </Col>
-        </Row>
+            <Col sm={12} className="user-edit">
+              <MDBBtn>Inbox</MDBBtn>
+              <MDBBtn onClick={createKennelModal}>Create Kennel</MDBBtn>
+              <MDBBtn onClick={updateUserModal}>Update me</MDBBtn>
+              <MDBBtn>Share</MDBBtn>
+            </Col>
+          </Row>
+        ) : (
+          <Row className="header-section">
+            <Col sm={2} className="user-picture">
+              <div className="img"></div>
+            </Col>
+            <Col sm={10} className="user-info">
+              <div className="box">
+                <i class="fas fa-dog"></i>
+                <h4>UserName</h4>
+                <i class="fas fa-phone"></i>
+                <h6>Phone</h6>
+                <i class="far fa-envelope"></i>
+                <h6>Email</h6>
+              </div>
+            </Col>
+
+            <Col sm={12} className="user-edit">
+              <MDBBtn>Inbox</MDBBtn>
+              <MDBBtn onClick={createKennelModal}>Create Kennel</MDBBtn>
+              <MDBBtn onClick={updateUserModal}>Update me</MDBBtn>
+              <MDBBtn>Share</MDBBtn>
+            </Col>
+          </Row>
+        )}
 
         <Row className="body-section">
           <Col sm={8} style={{ paddingLeft: "0" }}>
@@ -134,34 +178,34 @@ export default function UserProfile() {
                 <strong>About</strong>
               </h4>
               <hr></hr>
-              <div className="info"><p>
-                  <strong>Email</strong>: {user.email}
-                </p><p>
-                  <strong>Phone</strong>: {user.phone}
+              <div className="info">
+                <p>
+                  <strong>Age</strong>: {user.age}
                 </p>
                 <p>
                   <strong>Gender</strong>: {user.gender}
                 </p>
                 <p>
-                  <strong>Age</strong>: {user.age}
+                  <strong>Phone</strong>: {user.phone}
                 </p>
-                
-                
+                <p>
+                  <strong>Email</strong>: {user.email}
+                </p>
                 <p>
                   <strong>Address</strong>: {user.address}
+                </p>{" "}
+                <p>
+                  <strong>City</strong>: {user.city}
+                </p>
+                <p>
+                  <strong>Country</strong>: {user.country}
                 </p>
                 <p>
                   <strong>Relationship </strong>: {user.relationship}
                 </p>
                 <p>
                   <strong>Interested In</strong>: {user.interestedIn}
-                </p><p>
-                  <strong>Country</strong>: {user.country}
                 </p>
-                <p>
-                  <strong>City</strong>: {user.city}
-                </p>
-                
               </div>
             </Col>
           ) : (

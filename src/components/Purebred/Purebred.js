@@ -282,11 +282,13 @@ export default function Purebred() {
             </form>
           </Col>
         </Row>
-        <Row className="contact">
+        {/* <Row className="contact">
           <Col sm={12}>
-            <div className="contact-map"></div>
+            <div className="contact-map">
+            
+            </div>
           </Col>
-        </Row>
+        </Row> */}
       </Container>
     </div>
   );
