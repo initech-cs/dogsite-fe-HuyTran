@@ -16,6 +16,7 @@ export default function UpdateUserModal() {
   const [age, setAge] = useState('')
   const [avatar, setAvatar] = useState('')
   const [gender, setGender] = useState('')
+  const [images, setImages] = useState('')
 
 const {userId} = useParams()
 
@@ -38,7 +39,8 @@ const {userId} = useParams()
       address,
       age,
       avatar,
-      gender
+      gender,
+      images
     }
 
     let token = localStorage.getItem("token")
@@ -103,11 +105,15 @@ const {userId} = useParams()
             </Row>
             <Row>
               <Col sm={3} style={{textAlign:"left"}}><label htmlFor="avatar">Avatar</label></Col>
-              <Col sm={9}><input style={{width:"100%"}} type="file" value={avatar} onChange={(e) => setAvatar(e.target.value)}/><br /></Col>
+              <Col sm={9}><input style={{width:"100%"}} type="text" value={avatar} onChange={(e) => setAvatar(e.target.value)}/><br /></Col>
             </Row>
             <Row>
               <Col sm={3} style={{textAlign:"left"}}><label htmlFor="gender">Gender</label></Col>
               <Col sm={9}><input style={{width:"100%"}} type="text" value={gender} onChange={(e) => setGender(e.target.value)}/><br /></Col>
+            </Row>
+            <Row>
+              <Col sm={3} style={{textAlign:"left"}}><label htmlFor="images">Images</label></Col>
+              <Col sm={9}><input style={{width:"100%"}} type="text" value={images} onChange={(e) => setImages(e.target.value)}/><br /></Col>
             </Row>
 
           </Form>

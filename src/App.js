@@ -14,6 +14,7 @@ import Purebred from "./components/Purebred/Purebred";
 import UserProfile from "./components/userProfile/UserProfile";
 import CreateKennelModal from "./components/createKennelModal/CreateKennelModal";
 import UpdateUserModal from "./components/UpdateUserModal/UpdateUserModal";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/kennels/:kennelId"><KennelDetail /></Route>
         <Route path="/"><Breeds /></Route>
       </Switch>
+      <Footer/>
     </Router>
   );
 }

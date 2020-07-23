@@ -11,7 +11,7 @@ export default function Breeds() {
   const [page, setPage] = useState(1);
 
   const getBreedList = async () => {
-    console.log(`${process.env.REACT_APP_API_URL}/breeds/`);
+
     let data = await fetch(
       `${process.env.REACT_APP_API_URL}/breeds?page=${page}`
     );
