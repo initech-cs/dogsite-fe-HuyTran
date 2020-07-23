@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Navbar.css";
+import "./navbar.css";
 import { Nav, Navbar, Container, Row, Dropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import LoginModal from "../loginModal/LoginModal";
