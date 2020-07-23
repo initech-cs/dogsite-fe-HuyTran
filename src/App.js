@@ -13,6 +13,7 @@ import Kennels from "./components/kennelspage/Kennels";
 import Purebred from "./components/Purebred/Purebred";
 import UserProfile from "./components/userProfile/UserProfile";
 import CreateKennelModal from "./components/createKennelModal/CreateKennelModal";
+import UpdateUserModal from "./components/UpdateUserModal/UpdateUserModal";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       
       <LoginModal />
       <CreateKennelModal/>
+      <UpdateUserModal/>
       {/* <Search/> */}
       <Switch>
         <Route path="/users/:userId" exact={true}><UserProfile/></Route>

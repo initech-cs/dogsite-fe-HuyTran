@@ -12,11 +12,15 @@ export default function UserProfile() {
 
   const {userId} = useParams()
 
-  const show = useSelector((state) => state.showCreateKennel);
+  const showCreate = useSelector((state) => state.showCreateKennel);
+  const showUpdateUser = useSelector((state) => state.showUpdateUser);
 
   const dispatch = useDispatch();
-  const openModal = () => {
+  const createKennelModal = () => {
     dispatch({ type: "C-KENNEL", payload: { showCreateKennel: true } });
+  };
+  const updateUserModal = () => {
+    dispatch({ type: "UPDATE", payload: { showUpdateUser: true } });
   };
 
   const getKennelList = async () => {
@@ -24,13 +28,6 @@ export default function UserProfile() {
     let result = await data.json();
     setKennels(result.data);
   };
-
-  // const getSingleUser = async() => {
-  //   let data = await fetch(`${process.env.REACT_APP_API_URL}/users/me`)
-  //   let result = await data.json()
-
-  //   setUser(result)
-  // }
 
   const getUserInfo = async () => {
     let token = localStorage.getItem("token")
@@ -49,7 +46,7 @@ export default function UserProfile() {
     getKennelList();
     getUserInfo();
     // getSingleUser()
-  }, [show])
+  }, [showCreate, showUpdateUser])
 
   return (
     <div className="user-profile-body">
@@ -80,15 +77,8 @@ export default function UserProfile() {
 
           <Col sm={12} className="user-edit">
             <MDBBtn>Inbox</MDBBtn>
-            <MDBBtn
-              data-toggle="modal"
-              data-target="#fullHeightModalRight"
-              onClick={openModal}
-            >
-              Create Kennel
-            </MDBBtn>
-            <MDBBtn>Update Kennel</MDBBtn>
-            <MDBBtn>Delete Kennel</MDBBtn>
+            <MDBBtn onClick={createKennelModal}>Create Kennel</MDBBtn>
+            <MDBBtn onClick={updateUserModal}>Update me</MDBBtn>
             <MDBBtn>Share</MDBBtn>
           </Col>
         </Row>
@@ -143,19 +133,20 @@ export default function UserProfile() {
               <h4>
                 <strong>About</strong>
               </h4>
-              <div className="info">
+              <hr></hr>
+              <div className="info"><p>
+                  <strong>Email</strong>: {user.email}
+                </p><p>
+                  <strong>Phone</strong>: {user.phone}
+                </p>
                 <p>
                   <strong>Gender</strong>: {user.gender}
                 </p>
                 <p>
                   <strong>Age</strong>: {user.age}
                 </p>
-                <p>
-                  <strong>Email</strong>: {user.email}
-                </p>
-                <p>
-                  <strong>Phone</strong>: {user.phone}
-                </p>
+                
+                
                 <p>
                   <strong>Address</strong>: {user.address}
                 </p>
@@ -164,13 +155,13 @@ export default function UserProfile() {
                 </p>
                 <p>
                   <strong>Interested In</strong>: {user.interestedIn}
+                </p><p>
+                  <strong>Country</strong>: {user.country}
                 </p>
                 <p>
                   <strong>City</strong>: {user.city}
                 </p>
-                <p>
-                  <strong>Country</strong>: {user.country}
-                </p>
+                
               </div>
             </Col>
           ) : (

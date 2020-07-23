@@ -91,7 +91,7 @@ export default function CreateKennelModal() {
             </Row>
             <Row>
               <Col sm={2} style={{textAlign:"left"}}><label htmlFor="images">Images</label></Col>
-              <Col sm={10}><input style={{width:"100%"}} type="file" value={images} onChange={(e) => setImages(e.target.value)}/><br /></Col>
+              <Col sm={10}><input style={{width:"100%"}} type="text" value={images} onChange={(e) => setImages(e.target.value)}/><br /></Col>
             </Row>
 
           </Form>

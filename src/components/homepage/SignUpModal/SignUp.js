@@ -22,7 +22,6 @@ export default function SignUp() {
       {email: email, name: name, password: password, phone: phone}, 
     )
     dispatch({ type: "SIGNUP", payload: { showSignup: false } });
-
   }
 
   return (

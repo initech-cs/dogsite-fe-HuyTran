@@ -10,6 +10,7 @@ const initialState = {
   showLogin: false,
   showSignup: false,
   showCreateKennel: false,
+  showUpdateUser: false,
   // showUser: ""
 }
 
@@ -23,11 +24,12 @@ function reducer(state = initialState, action){
   }
   if(action.type === "SIGNUP"){
     state.showSignup = action.payload.showSignup
-    // state.showUser = action.payload.showUser
   }
   if(action.type === "C-KENNEL"){
     state.showCreateKennel = action.payload.showCreateKennel
-    // state.showUser = action.payload.showUser
+  }
+  if(action.type === "UPDATE"){
+    state.showUpdateUser = action.payload.showUpdateUser
   }
   state = {...state} 
   return state
