@@ -3,7 +3,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import "./App.css";
-import Navbar from "./components/homepage/navbar/Navbar";
+import Navbar from "./components/homepage/navbar/navbar";
 import KennelDetail from "./components/homepage/jumbotrons/Jumbotron";
 import LoginModal from "./components/homepage/loginModal/LoginModal";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
