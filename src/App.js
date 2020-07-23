@@ -4,7 +4,6 @@ import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import "./App.css";
 import Navbar from "./components/homepage/navbar/navbar";
-import KennelDetail from "./components/homepage/jumbotrons/Jumbotron";
 import LoginModal from "./components/homepage/loginModal/LoginModal";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Breeds from "./components/breedpage/Breeds";
@@ -15,6 +14,7 @@ import UserProfile from "./components/userProfile/UserProfile";
 import CreateKennelModal from "./components/createKennelModal/CreateKennelModal";
 import UpdateUserModal from "./components/UpdateUserModal/UpdateUserModal";
 import Footer from "./components/footer/Footer";
+import Jumbotron from "./components/homepage/jumbotrons/Jumbotron";
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
         <Route path="/purebreds" exact={true}><Purebred /></Route>
         <Route path="/kennels" exact={true}><Kennels /></Route>
         <Route path="/kennels/:kennelId/purebreds"><Purebred/></Route>
-        <Route path="/kennels/:kennelId"><KennelDetail /></Route>
+        <Route path="/kennels/:kennelId"><Jumbotron/></Route>
         <Route path="/"><Breeds /></Route>
       </Switch>
       <Footer/>
